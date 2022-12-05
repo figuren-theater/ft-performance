@@ -1,0 +1,70 @@
+{
+	"name": "figuren-theater/ft-performance",
+	"description": "Fast websites are more accessible, more sustainable and are giving a better UX. This is the code which accelerates figuren.theater and its WordPress Multisite Network.",
+    "homepage": "https://websites.fuer.figuren.theater",
+    "type": "wordpress-muplugin",
+    "keywords": ["wordpress", "performance", "caching", "pre-loading", "pre-fetching"],
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "figuren.theater",
+            "email": "info@figuren.theater"
+        },
+        {
+            "name": "Carsten Bach",
+            "email": "mail@carsten-bach.de",
+            "homepage": "https://carsten-bach.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "info@figuren.theater",
+        "issues": "https://github.com/figuren-theater/ft-performance/issues",
+        "source": "https://github.com/figuren-theater/ft-performance"
+    },
+	"autoload": {
+		"files": [
+			"inc/cache-control/namespace.php",
+            "inc/cache-enabler/namespace.php",
+            "inc/pwa/namespace.php",
+            "inc/quicklink/namespace.php",
+			"inc/namespace.php"
+		],
+        "classmap": [
+            "inc/"
+        ]
+	},
+	"repositories": [
+		{
+            "type": "git",
+            "url": "https://github.com/figuren-theater/ft-options"
+        },
+		{
+			"type": "composer",
+			"url" : "https://wpackagist.org"
+		}
+	],
+	"require": {
+        "php": ">=7.2",
+        "figuren-theater/ft-options": "^1",
+		"wpackagist-plugin/cache-control": "^2.2",
+		"wpackagist-plugin/cache-enabler": "^1.8",
+		"wpackagist-plugin/pwa": "^0.7.1",
+		"wpackagist-plugin/quicklink": "^0.9.1"
+	},
+    "extra": {
+        "altis": {
+            "install-overrides": [
+                "wpackagist-plugin/cache-control",
+                "wpackagist-plugin/cache-enabler",
+            	"wpackagist-plugin/pwa",
+                "wpackagist-plugin/quicklink"
+            ]
+        }
+    },
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true
+		}
+	}
+}
