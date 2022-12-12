@@ -3,7 +3,7 @@
 	"description": "Fast websites are more accessible, more sustainable and are giving a better UX. This is the code which accelerates figuren.theater and its WordPress Multisite Network.",
     "homepage": "https://websites.fuer.figuren.theater",
     "type": "wordpress-muplugin",
-    "keywords": ["wordpress", "performance", "caching", "pre-loading", "pre-fetching"],
+    "keywords": ["wordpress", "performance", "caching", "pre-loading", "pre-fetching", "gettext"],
     "license": "GPL-3.0-or-later",
     "authors": [
         {
@@ -26,6 +26,7 @@
 		"files": [
 			"inc/cache-control/namespace.php",
             "inc/cache-enabler/namespace.php",
+            "inc/native-gettext/namespace.php",
             "inc/pwa/namespace.php",
             "inc/quicklink/namespace.php",
 			"inc/namespace.php"
@@ -49,6 +50,7 @@
         "figuren-theater/ft-options": "^1",
 		"wpackagist-plugin/cache-control": "^2.2",
 		"wpackagist-plugin/cache-enabler": "^1.8",
+        "wpackagist-plugin/native-gettext": "^1.1",
 		"wpackagist-plugin/pwa": "^0.7.1",
 		"wpackagist-plugin/quicklink": "^0.9.1"
 	},
@@ -57,6 +59,7 @@
             "install-overrides": [
                 "wpackagist-plugin/cache-control",
                 "wpackagist-plugin/cache-enabler",
+                "wpackagist-plugin/native-gettext",
             	"wpackagist-plugin/pwa",
                 "wpackagist-plugin/quicklink"
             ]

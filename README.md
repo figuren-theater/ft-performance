@@ -11,6 +11,7 @@ Thoose are completely managed by code and lack of their typical UI.
 
 * [Cache-Control](https://wordpress.org/plugins/cache-control/#developers)
 * [Cache Enabler](https://wordpress.org/plugins/cache-enabler/#developers)
+* [Native Gettext](https://wordpress.org/plugins/native-gettext/#developers)
 * [PWA](https://wordpress.org/plugins/pwa/#developers)
 * [Quicklink for WordPress](https://wordpress.org/plugins/quicklink/#developers)
 
