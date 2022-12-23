@@ -14,6 +14,8 @@ Thoose are completely managed by code and lack of their typical UI.
 * [Native Gettext](https://wordpress.org/plugins/native-gettext/#developers)
 * [PWA](https://wordpress.org/plugins/pwa/#developers)
 * [Quicklink for WordPress](https://wordpress.org/plugins/quicklink/#developers)
+* [SQLite Object Cache](https://wordpress.org/plugins/sqlite-object-cache/#developers)
+
 
 ## What does this package do in addition?
 
@@ -21,3 +23,14 @@ Accompaniying the core functionality of the mentioned plugins, theese **best pra
 
 - ...
 
+Add the following to your composer project:
+
+```
+"extra": {
+    "dropin-paths": {
+        "htdocs/wp-content/": [
+            "package:figuren-theater/ft-performance:templates/htdocs/wp-content/object-cache.php"
+        ]
+    }
+}
+```

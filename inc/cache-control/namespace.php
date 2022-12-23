@@ -173,7 +173,7 @@ function filter_options() : void {
 		
 		// prepare option-name 1st part
 		// this will be: 'cache_control_' . 'singles' . '_'
-		$_option_name = OPTION_NAME_PREFIX . $content_type . '_';
+		$_option_name = OPTION_PREFIX . $content_type . '_';
 		
 		//
 		foreach ($options as $option_type => $option_value) {

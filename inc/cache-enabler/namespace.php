@@ -10,6 +10,7 @@ namespace Figuren_Theater\Performance\Cache_Enabler;
 use FT_VENDOR_DIR;
 
 use Figuren_Theater;
+use Figuren_Theater\Options;
 use function Figuren_Theater\get_config;
 
 use function add_action;
