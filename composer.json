@@ -64,8 +64,7 @@
                 "wpackagist-plugin/cache-enabler",
                 "wpackagist-plugin/native-gettext",
             	"wpackagist-plugin/pwa",
-                "wpackagist-plugin/quicklink",
-                "wpackagist-plugin/sqlite-object-cache"
+                "wpackagist-plugin/quicklink"
             ]
         }
     },

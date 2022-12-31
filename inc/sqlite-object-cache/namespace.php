@@ -13,9 +13,14 @@ use Figuren_Theater;
 use function Figuren_Theater\get_config;
 
 use function add_action;
+use function current_user_can;
+use function get_current_screen;
+use function remove_submenu_page;
+use function wp_dequeue_style;
 
 const BASENAME   = 'sqlite-object-cache/sqlite-object-cache.php';
-const PLUGINPATH = FT_VENDOR_DIR . '/wpackagist-plugin/' . BASENAME;
+// const PLUGINPATH = FT_VENDOR_DIR . '/wpackagist-plugin/' . BASENAME;
+const PLUGINPATH = WP_PLUGIN_DIR . '/' . BASENAME; // @TODO ugly hardcoded WP_CONTENT_DIR inside plugin, needs issue !!
 
 /**
  * Bootstrap module, when enabled.
