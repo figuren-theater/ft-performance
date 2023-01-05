@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "34391db8e4670f2a151b47a9052f219a",
+    "content-hash": "bc84986acabd8d1c87799f4740fbf10d",
     "packages": [
         {
             "name": "composer/installers",
@@ -153,11 +153,11 @@
         },
         {
             "name": "figuren-theater/ft-options",
-            "version": "1.1.6",
+            "version": "1.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/figuren-theater/ft-options",
-                "reference": "caaceb3c7c3db12e92e33773db8db48b01070fb9"
+                "reference": "8f6bbd22d0dcfc3244063a73ce77f11979ae30b4"
             },
             "require": {
                 "php": ">=7.1"
@@ -196,7 +196,7 @@
                 "issues": "https://github.com/figuren-theater/ft-options/issues",
                 "source": "https://github.com/figuren-theater/ft-options"
             },
-            "time": "2022-12-05T00:41:13+00:00"
+            "time": "2022-12-31T01:06:34+00:00"
         },
         {
             "name": "koodimonni/composer-dropin-installer",

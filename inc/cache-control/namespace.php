@@ -36,8 +36,11 @@ function load_plugin() {
 	$config = Figuren_Theater\get_config()['modules']['performance'];
 	if ( ! $config['cache-control'] )
 		return; // early
-
+	
 	require_once PLUGINPATH;
+
+	// global $cache_control_options;
+	// die( var_export( $cache_control_options, true ) ); // 
 
 	remove_action( 'init', 'cache_control_add_admin_page' );
 
@@ -50,7 +53,7 @@ function filter_options() : void {
 		'front_page'     => [
 			'id'         => 'front_page',
 			'name'       => 'Front page',
-			'max_age'    => 300,           //  5 min
+			'max_age'    => 303,           //  5 min (+ 3 sec to help during debug, to see if options are set correct)
 			's_maxage'   => 0,
 			'staleerror' => 0,
 			'stalereval' => 0
@@ -189,7 +192,7 @@ function filter_options() : void {
 	}
 
 	// see the tree ;)
-	// die('<pre>'.var_export($separated_options,true).'</pre>');
+	// die('<pre>'.var_export($_separated_options,true).'</pre>');
 
 	// gets added to the 'OptionsCollection' 
 	// from within itself on creation

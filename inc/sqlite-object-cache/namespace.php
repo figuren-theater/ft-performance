@@ -32,6 +32,12 @@ function bootstrap() {
 
 function load_plugin() {
 
+	// remove 'Activate'-Link from Plugins on the Plugin-List
+	// (1) is Plugin is not allowed or (2) if is PRODUCTION environment
+	add_action( 'plugin_action_links', __NAMESPACE__ . '\\remove_plugin_action_links', 10, 2 );
+	add_action( 'network_admin_plugin_action_links', __NAMESPACE__ . '\\remove_plugin_action_links', 10, 4 );
+
+
 	$config = Figuren_Theater\get_config()['modules']['performance'];
 	if ( ! $config['sqlite-object-cache'] )
 		return; // early
@@ -40,6 +46,7 @@ function load_plugin() {
 
 	add_action( 'admin_menu', __NAMESPACE__ . '\\remove_menu', 11 );
 	add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\remove_scripts', 11 );
+
 
 }
 
@@ -58,4 +65,26 @@ function remove_scripts() : void {
 
 	// 
 	wp_dequeue_style( 'sqlite_object_cache-admin' );
+}
+
+
+/**
+ * [remove_plugin_action_links description]
+ * 
+ * @param  [string[]] $links_array       An array of plugin action links. By default this can include 'activate', 'deactivate', and 'delete'. With Multisite active this can also include 'network_active' and 'network_only' items.
+ * @param  [string]   $plugin_file_name  Path to the plugin file relative to the plugins directory.
+ * @param  [Array]    $plugin_data       Contains all the plugin meta information, like Name, Description, Author, AuthorURI etc.
+ * @param  [String]   $context           The plugin status. It can include by default: ‘all’, ‘active’, ‘recently_activated’, ‘inactive’, ‘upgrade’, ‘dropins’, ‘mustuse’, and ‘search’.
+ * 
+ * @return [Array]    $links_array
+ */
+function remove_plugin_action_links( $links_array, $plugin_file_name, $plugin_data = null, $context = null ) {
+
+	if ( BASENAME !== $plugin_file_name )
+		return $links_array;
+
+	$links_array   = [];
+	$links_array[] = '<span style="color:#888">autoloaded by <code>' . __NAMESPACE__ . '</code></span>';
+
+	return $links_array;
 }
