@@ -30,7 +30,8 @@
             "inc/pwa/namespace.php",
             "inc/quicklink/namespace.php",
             "inc/sqlite-object-cache/namespace.php",
-			"inc/namespace.php"
+			"inc/wp-super-preload/namespace.php",
+            "inc/namespace.php"
 		],
         "classmap": [
             "inc/"
@@ -41,6 +42,10 @@
             "type": "git",
             "url": "https://github.com/figuren-theater/ft-options"
         },
+        {
+            "type": "git",
+            "url": "https://github.com/carstingaxion/WP-Super-Preload"
+        },
 		{
 			"type": "composer",
 			"url" : "https://wpackagist.org"
@@ -50,6 +55,7 @@
         "php": ">=7.2",
         "koodimonni/composer-dropin-installer": "^1.4",
         "figuren-theater/ft-options": "^1",
+        "carstingaxion/wp-super-preload": "^1.2",
 		"wpackagist-plugin/cache-control": "^2.2",
 		"wpackagist-plugin/cache-enabler": "^1.8",
         "wpackagist-plugin/native-gettext": "^1.1",
@@ -60,6 +66,7 @@
     "extra": {
         "altis": {
             "install-overrides": [
+                "carstingaxion/wp-super-preload",
                 "wpackagist-plugin/cache-control",
                 "wpackagist-plugin/cache-enabler",
                 "wpackagist-plugin/native-gettext",

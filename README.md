@@ -15,7 +15,8 @@ Thoose are completely managed by code and lack of their typical UI.
 * [PWA](https://wordpress.org/plugins/pwa/#developers)
 * [Quicklink for WordPress](https://wordpress.org/plugins/quicklink/#developers)
 * [SQLite Object Cache](https://wordpress.org/plugins/sqlite-object-cache/#developers)
-
+* [WP-Super-Preload](https://github.com/carstingaxion/WP-Super-Preload)
+    This plugin helps to keep whole pages of your site always being cached in the fresh based on the sitemap.xml and your own settings.
 
 ## What does this package do in addition?
 

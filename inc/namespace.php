@@ -39,7 +39,7 @@ function register() {
 		'quicklink'           => $use_cache,
 		
 		'sqlite-object-cache' => $use_cache, // This file will be installed from this plugin, no chance to check against $use_mem_cache from here.
-		// 'wp-super-preload'    => $use_cache,
+		'wp-super-preload'    => $use_cache,
 	];
 	$options = [
 		'defaults' => $default_settings,
@@ -65,7 +65,7 @@ function bootstrap() {
 	PWA\bootstrap();
 	Quicklink\bootstrap();
 	Sqlite_Object_Cache\bootstrap();
-	// WP_Super_Preload\bootstrap();
+	WP_Super_Preload\bootstrap();
 	
 	// Best practices
 	//...\bootstrap();
