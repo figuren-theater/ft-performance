@@ -10,6 +10,7 @@ namespace Figuren_Theater\Performance\Sqlite_Object_Cache;
 use FT_VENDOR_DIR;
 
 use Figuren_Theater;
+use Figuren_Theater\Options;
 use function Figuren_Theater\get_config;
 
 use function add_action;
@@ -26,6 +27,8 @@ const PLUGINPATH = WP_PLUGIN_DIR . '/' . BASENAME; // @TODO ugly hardcoded WP_CO
  * Bootstrap module, when enabled.
  */
 function bootstrap() {
+
+	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 
 	add_action( 'muplugins_loaded', __NAMESPACE__ . '\\load_plugin' );
 }
@@ -46,9 +49,27 @@ function load_plugin() {
 
 	add_action( 'admin_menu', __NAMESPACE__ . '\\remove_menu', 11 );
 	add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\remove_scripts', 11 );
-
-
 }
+
+function filter_options() : void {
+
+	$_options = [
+		'retention'          => '24',  // Cached data expires after n hours.
+		// 'capture'         => 'on',  // checked for existence, not for value; so commenting it out - is ok
+		'frequency'          => '100', // relates to measuring the captures
+		'retainmeasurements' => '2',   // relates to measuring the captures
+		// 'previouscapture' => 1673228570, // relates to measuring the captures // because of this we (would) need a merged option
+	];
+
+	// gets added to the 'OptionsCollection' 
+	// from within itself on creation
+	new Options\Option(
+		'sqlite_object_cache_settings',
+		$_options,
+		BASENAME
+	);
+}
+
 
 function remove_menu() : void {
 
