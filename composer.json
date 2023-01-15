@@ -59,9 +59,9 @@
 		"wpackagist-plugin/cache-control": "^2.2",
 		"wpackagist-plugin/cache-enabler": "^1.8",
         "wpackagist-plugin/native-gettext": "^1.1",
-		"wpackagist-plugin/pwa": "^0.7.1",
-		"wpackagist-plugin/quicklink": "^0.9.1",
-        "wpackagist-plugin/sqlite-object-cache": "^1.0.0"
+		"wpackagist-plugin/pwa": "^0.7",
+		"wpackagist-plugin/quicklink": "^0.9",
+        "wpackagist-plugin/sqlite-object-cache": "^1.0"
 	},
     "extra": {
         "altis": {
