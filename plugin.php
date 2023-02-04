@@ -11,7 +11,7 @@
  * Plugin Name:       figuren.theater | Performance
  * Plugin URI:        https://github.com/figuren-theater/ft-performance
  * Description:       Fast websites are more accessible, more sustainable and are giving a better UX. This is the code which accelerates figuren.theater and its WordPress Multisite Network.
- * Version:           1.0.7
+ * Version:           1.1.0
  * Requires at least: 6.0
  * Requires PHP:      7.2
  * Author:            figuren.theater
