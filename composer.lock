@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d4ca81aa35410a33a774936b70b35c4a",
+    "content-hash": "57b957c93e9120b179a639d27c10cc00",
     "packages": [
         {
             "name": "carstingaxion/wp-super-preload",
