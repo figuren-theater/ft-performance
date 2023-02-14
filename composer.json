@@ -26,6 +26,7 @@
 		"files": [
 			"inc/cache-control/namespace.php",
             "inc/cache-enabler/namespace.php",
+            "inc/fast404/namespace.php",
             "inc/native-gettext/namespace.php",
             "inc/pwa/namespace.php",
             "inc/quicklink/namespace.php",
@@ -58,6 +59,7 @@
         "carstingaxion/wp-super-preload": "^1.2",
 		"wpackagist-plugin/cache-control": "^2.2",
 		"wpackagist-plugin/cache-enabler": "^1.8",
+        "wpackagist-plugin/fast404": "^1",
         "wpackagist-plugin/native-gettext": "^1.1",
 		"wpackagist-plugin/pwa": "^0.7",
 		"wpackagist-plugin/quicklink": "^0.9",
@@ -69,6 +71,7 @@
                 "carstingaxion/wp-super-preload",
                 "wpackagist-plugin/cache-control",
                 "wpackagist-plugin/cache-enabler",
+                "wpackagist-plugin/fast404",
                 "wpackagist-plugin/native-gettext",
             	"wpackagist-plugin/pwa",
                 "wpackagist-plugin/quicklink"
