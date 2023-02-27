@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "57b957c93e9120b179a639d27c10cc00",
+    "content-hash": "b569e136887bfbc67f1a1bfa08e08f68",
     "packages": [
         {
             "name": "carstingaxion/wp-super-preload",
@@ -516,6 +516,24 @@
             "homepage": "https://wordpress.org/plugins/cache-enabler/"
         },
         {
+            "name": "wpackagist-plugin/fast404",
+            "version": "1.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/fast404/",
+                "reference": "tags/1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/fast404.1.1.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/fast404/"
+        },
+        {
             "name": "wpackagist-plugin/native-gettext",
             "version": "1.1.1",
             "source": {
@@ -571,15 +589,15 @@
         },
         {
             "name": "wpackagist-plugin/sqlite-object-cache",
-            "version": "1.2.0",
+            "version": "1.2.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/sqlite-object-cache/",
-                "reference": "tags/1.2.0"
+                "reference": "tags/1.2.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/sqlite-object-cache.1.2.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/sqlite-object-cache.1.2.3.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
