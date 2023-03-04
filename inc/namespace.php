@@ -61,6 +61,7 @@ function bootstrap() {
 	// Plugins
 	Cache_Control\bootstrap();
 	Cache_Enabler\bootstrap();
+	Fast404\bootstrap();
 	Native_Gettext\bootstrap();
 	PWA\bootstrap();
 	Quicklink\bootstrap();
