@@ -70,7 +70,7 @@ Figuren_Theater::API\get_...()
 This package contains the following plugins. 
 Thoose are completely managed by code and lack of their typical UI.
 
-* [Cache-Control](https://wordpress.org/plugins/cache-control/#developers)
+* [Cache-Control](https://github.com/carstingaxion/wordpress-cache-control)
 * [Cache Enabler](https://wordpress.org/plugins/cache-enabler/#developers)
 * [Fast404](https://wordpress.org/plugins/fast404/#developers)
 * [Native Gettext](https://wordpress.org/plugins/native-gettext/#developers)
