@@ -20,7 +20,7 @@ use function Altis\register_module;
 function register() {
 
 	$use_cache     = defined( 'WP_CACHE' ) && constant( 'WP_CACHE' );
-	$use_mem_cache = file_exists( WP_CONTENT_DIR . '/object-cache.php' );
+	// $use_mem_cache = file_exists( WP_CONTENT_DIR . '/object-cache.php' );
 
 	$default_settings = [
 		// needs to be set
