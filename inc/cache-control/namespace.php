@@ -17,7 +17,8 @@ use function add_action;
 use function remove_action;
 
 const BASENAME   = 'cache-control/cache-control.php';
-const PLUGINPATH = FT_VENDOR_DIR . '/wpackagist-plugin/' . BASENAME;
+// const PLUGINPATH = FT_VENDOR_DIR . '/wpackagist-plugin/' . BASENAME;
+const PLUGINPATH = FT_VENDOR_DIR . '/carstingaxion/' . BASENAME;
 
 const OPTION_PREFIX = 'cache_control_';
 
