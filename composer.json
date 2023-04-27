@@ -58,7 +58,6 @@
 	],
 	"require": {
         "php": ">=7.2",
-        "koodimonni/composer-dropin-installer": "^1.4",
         "figuren-theater/ft-options": "^1",
 		"carstingaxion/cache-control": "^2.2",
         "carstingaxion/wp-super-preload": "^1.2",
