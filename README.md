@@ -42,14 +42,7 @@
         "type": "git",
         "url": "https://github.com/figuren-theater/ft-performance"
     }
-],
-"extra": {
-    "dropin-paths": {
-        "htdocs/wp-content/": [
-            "package:wpackagist-plugin/sqlite-object-cache:assets/drop-in/object-cache.php"
-        ]
-    }
-}
+]
 ```
 
 2. Install via command line
