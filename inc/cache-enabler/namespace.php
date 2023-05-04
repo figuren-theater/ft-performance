@@ -55,7 +55,8 @@ function filter_options() : void {
 		// @see https://www.keycdn.com/support/wordpress-cache-enabler-plugin#option !!!
 		# stand vom 19.04.2022
 		# stand vom 14.06.2022
-		"version"                            => "1.8.7",
+		# stand vom 28.04.2023
+		"version"                            => "1.8.13",
 		"use_trailing_slashes"               => 1,
 		"permalink_structure"                => "has_trailing_slash",
 		"cache_expires"                      => 0,
@@ -64,7 +65,7 @@ function filter_options() : void {
 		"clear_site_cache_on_saved_comment"  => 0,
 		"clear_site_cache_on_saved_term"     => 1,
 		"clear_site_cache_on_saved_user"     => 0,
-		"clear_site_cache_on_changed_plugin" => 1,
+		"clear_site_cache_on_changed_plugin" => 0,
 		// Maybe re-enable when we ship .jpeg and .webp in parallel
 		"convert_image_urls_to_webp"         => '', 
 		"mobile_cache"                       => 0,
