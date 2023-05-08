@@ -56,7 +56,7 @@ function filter_options() : void {
 		# stand vom 19.04.2022
 		# stand vom 14.06.2022
 		# stand vom 28.04.2023
-		"version"                            => "1.8.13",
+		"version"                            => "1.8.7",
 		"use_trailing_slashes"               => 1,
 		"permalink_structure"                => "has_trailing_slash",
 		"cache_expires"                      => 0,

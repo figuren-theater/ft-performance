@@ -13,6 +13,7 @@ use WP_DEBUG;
 
 use Figuren_Theater;
 use Figuren_Theater\Options;
+use Figuren_Theater\Theming\Themed_Login;
 use function Figuren_Theater\get_config;
 
 use WP_Web_App_Manifest;
@@ -158,7 +159,7 @@ function __add_app_shortcuts( array $manifest ) : array {
 
 
 function __set_colors( array $manifest ) : array {
-	$relevant_colors = \ft_get_relevant_colors();
+	$relevant_colors = Themed_Login\ft_get_relevant_colors();
 
 	$manifest['background_color'] = $relevant_colors['ft_accent'];
 	$manifest['theme_color']      = $relevant_colors['ft_accent'];
