@@ -291,10 +291,8 @@ function on_page_cache_deletion( string $cleared_url, int $cleared_page_id, $cac
 		$_calc = ( $_wp_next_scheduled < MINUTE_IN_SECONDS );
 		#error_log('$_wp_next_scheduled < MINUTE_IN_SECONDS   '.var_export([$_calc],true));
 
-		// if ( $this->already_sheduled_preload )
-		if ( $_calc )
+		if ( $_calc && false !== $_wp_next_scheduled )
 			return;
-
 
 		// By the settings of 'cache-enabler' 
 		// the whole site-cache gets deleted,
@@ -315,8 +313,6 @@ function on_page_cache_deletion( string $cleared_url, int $cleared_page_id, $cac
 			$preload_handle,
 			$hook_args
 		);
-
-		// $this->already_sheduled_preload = $_wp_schedule_event ;
 
 		#error_log('wp_clear_scheduled_hook::  '.$preload_handle.': '.var_export($_wp_clear_scheduled_hook,true));
 		#error_log('wp_schedule_event::  '.$preload_handle.': '.var_export($_wp_schedule_event,true));
