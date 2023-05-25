@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f5443b4acf587a7f0b109cea4d5cddb",
+    "content-hash": "bbb267054ce47c4d404ae21e9e3367f5",
     "packages": [
         {
             "name": "carstingaxion/cache-control",
@@ -429,54 +429,6 @@
             "time": "2020-04-16T21:44:57+00:00"
         },
         {
-            "name": "koodimonni/composer-dropin-installer",
-            "version": "1.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Koodimonni/Composer-Dropin-Installer.git",
-                "reference": "9596ef8f50cbba2cdc707ca3b1f5e4a0e9fa7e7e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Koodimonni/Composer-Dropin-Installer/zipball/9596ef8f50cbba2cdc707ca3b1f5e4a0e9fa7e7e",
-                "reference": "9596ef8f50cbba2cdc707ca3b1f5e4a0e9fa7e7e",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.0 | ^2.0",
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5.7"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "Koodimonni\\Composer\\Dropin"
-            },
-            "autoload": {
-                "psr-4": {
-                    "Koodimonni\\Composer\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "WTFPL"
-            ],
-            "authors": [
-                {
-                    "name": "Onni Hakala",
-                    "email": "onni@keksi.io",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Install packages or a few files from packages into custom paths without overwriting existing stuff.",
-            "support": {
-                "issues": "https://github.com/Koodimonni/Composer-Dropin-Installer/issues",
-                "source": "https://github.com/Koodimonni/Composer-Dropin-Installer/tree/1.4"
-            },
-            "time": "2022-02-02T11:42:57+00:00"
-        },
-        {
             "name": "markjaquith/wp-tlc-transients",
             "version": "1.0",
             "source": {
@@ -596,15 +548,15 @@
         },
         {
             "name": "wpackagist-plugin/quicklink",
-            "version": "0.9.1",
+            "version": "0.10.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/quicklink/",
-                "reference": "tags/0.9.1"
+                "reference": "tags/0.10.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/quicklink.0.9.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/quicklink.0.10.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
