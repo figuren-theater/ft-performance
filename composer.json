@@ -83,7 +83,14 @@
     },
 	"config": {
 		"allow-plugins": {
-			"composer/installers": true
+			"composer/installers": true,
+			"johnpbloch/wordpress-core-installer": true,
+			"phpstan/extension-installer": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"ergebnis/composer-normalize": true
 		}
+	},
+	"require-dev": {
+		"figuren-theater/code-quality": "^0.6.7"
 	}
 }
