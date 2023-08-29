@@ -2,7 +2,7 @@
 /**
  * Figuren_Theater Performance Cache_Control.
  *
- * @package figuren-theater/performance/cache-control
+ * @package figuren-theater/ft-performance
  */
 
 namespace Figuren_Theater\Performance\Cache_Control;

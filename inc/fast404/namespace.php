@@ -2,7 +2,7 @@
 /**
  * Figuren_Theater Performance Fast404.
  *
- * @package figuren-theater/performance/fast404
+ * @package figuren-theater/ft-performance
  */
 
 namespace Figuren_Theater\Performance\Fast404;

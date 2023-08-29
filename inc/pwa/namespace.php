@@ -2,7 +2,7 @@
 /**
  * Figuren_Theater Performance PWA.
  *
- * @package figuren-theater/performance/pwa
+ * @package figuren-theater/ft-performance
  */
 
 namespace Figuren_Theater\Performance\PWA;

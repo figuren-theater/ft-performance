@@ -2,7 +2,7 @@
 /**
  * Figuren_Theater Performance Native_Gettext.
  *
- * @package figuren-theater/performance/native_gettext
+ * @package figuren-theater/ft-performance
  */
 
 namespace Figuren_Theater\Performance\Native_Gettext;

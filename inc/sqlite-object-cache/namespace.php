@@ -2,7 +2,7 @@
 /**
  * Figuren_Theater Performance Sqlite_Object_Cache.
  *
- * @package figuren-theater/performance/sqlite-object-cache
+ * @package figuren-theater/ft-performance
  */
 
 namespace Figuren_Theater\Performance\Sqlite_Object_Cache;

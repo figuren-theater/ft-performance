@@ -2,7 +2,7 @@
 /**
  * Figuren_Theater Performance WP_Super_Preload.
  *
- * @package figuren-theater/performance/wp_super_preload
+ * @package figuren-theater/ft-performance
  */
 
 namespace Figuren_Theater\Performance\WP_Super_Preload;

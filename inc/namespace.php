@@ -2,7 +2,7 @@
 /**
  * Figuren_Theater Performance.
  *
- * @package figuren-theater/performance
+ * @package figuren-theater/ft-performance
  */
 
 namespace Figuren_Theater\Performance;

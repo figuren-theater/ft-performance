@@ -2,7 +2,7 @@
 /**
  * Figuren_Theater Performance Quicklink.
  *
- * @package figuren-theater/performance/quicklink
+ * @package figuren-theater/ft-performance
  */
 
 namespace Figuren_Theater\Performance\Quicklink;
