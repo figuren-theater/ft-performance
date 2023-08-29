@@ -7,37 +7,23 @@
 
 namespace Figuren_Theater\Performance;
 
-use WP_CACHE;
-use WP_CONTENT_DIR;
-
 use Altis;
-use function Altis\register_module;
-
 
 /**
  * Register module.
  */
 function register() {
 
-	$use_cache     = defined( 'WP_CACHE' ) && constant( 'WP_CACHE' );
-	// $use_mem_cache = file_exists( WP_CONTENT_DIR . '/object-cache.php' );
+	$use_cache = defined( 'WP_CACHE' ) && constant( 'WP_CACHE' );
 
 	$default_settings = [
-		// needs to be set
-		'enabled'             => true,
+		'enabled'             => true,  // Needs to be set.
 
 		'cache-control'       => $use_cache,
 		'cache-enabler'       => $use_cache,
-
-		// 'native-gettext'      => ! $use_mem_cache,
 		'native-gettext'      => true,
-		// 'dynamo'            => $use_mem_cache, // OR
-		// 'fast-translate'    => $use_mem_cache, // OR
-		// "A faster load_textdomain" --> https://gist.github.com/soderlind/610a9b24dbf95a678c3e
-		
 		'pwa'                 => false,
 		'quicklink'           => $use_cache,
-		
 		'sqlite-object-cache' => $use_cache, // This file will be installed from this plugin, no chance to check against $use_mem_cache from here.
 		'wp-super-preload'    => $use_cache,
 	];
@@ -55,10 +41,12 @@ function register() {
 
 /**
  * Bootstrap module, when enabled.
+ *
+ * @return void
  */
-function bootstrap() {
+function bootstrap() :void {
 
-	// Plugins
+	// Plugins.
 	Cache_Control\bootstrap();
 	Cache_Enabler\bootstrap();
 	Fast404\bootstrap();
@@ -67,7 +55,4 @@ function bootstrap() {
 	Quicklink\bootstrap();
 	Sqlite_Object_Cache\bootstrap();
 	WP_Super_Preload\bootstrap();
-	
-	// Best practices
-	//...\bootstrap();
 }
