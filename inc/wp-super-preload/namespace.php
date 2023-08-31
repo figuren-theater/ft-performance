@@ -78,7 +78,12 @@ function load_plugin() :void {
 		add_action( 'admin_menu', __NAMESPACE__ . '\\remove_menu', 11 );
 }
 
-function filter_options() {
+/**
+ * Handle options
+ *
+ * @return void
+ */
+function filter_options() :void {
 	/*
 	 * Gets added to the 'OptionsCollection'
 	 * from within itself on creation.

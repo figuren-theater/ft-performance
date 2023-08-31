@@ -115,10 +115,13 @@ function filter_options() :void {
 	add_filter(
 		'cache_enabler_page_contents_before_store',
 		function( $html_to_save ) {
+			// Get secret login slug.
+			$login_slug = (string) getenv( 'FT_SECURITY_LOGIN_SLUG' );
+
 			// Make sure our Login-URL never lands in cache
 			// this also prevents the admin_bar of
 			// dripping into the cache for whatever reason.
-			$security_alert = (bool) strpos( $html_to_save, getenv( 'FT_SECURITY_LOGIN_SLUG' ) );
+			$security_alert = (bool) strpos( $html_to_save, $login_slug );
 			return ( $security_alert ) ? '' : $html_to_save;
 		}
 	);

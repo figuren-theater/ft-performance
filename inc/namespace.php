@@ -9,10 +9,14 @@ namespace Figuren_Theater\Performance;
 
 use Altis;
 
+const ASSETS_URL = '/FT/ft-performance/assets/';
+
 /**
  * Register module.
+ *
+ * @return void
  */
-function register() {
+function register() :void {
 
 	$use_cache = defined( 'WP_CACHE' ) && constant( 'WP_CACHE' );
 

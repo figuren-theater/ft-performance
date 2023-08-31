@@ -8,14 +8,22 @@
 namespace Figuren_Theater\Performance\PWA;
 
 use Figuren_Theater;
-
 use Figuren_Theater\Options;
-
+use Figuren_Theater\Performance;
 use Figuren_Theater\Theming\Themed_Login;
 use FT_VENDOR_DIR;
 use function add_action;
 use function add_filter;
-use WP_CONTENT_URL;
+use function esc_url;
+use function get_option;
+use function get_permalink;
+use function get_post;
+use function get_term;
+use function get_term_link;
+use function get_the_excerpt;
+use function get_the_title;
+use function home_url;
+use WPMU_PLUGIN_URL;
 use WP_DEBUG;
 use WP_Web_App_Manifest;
 
@@ -60,11 +68,17 @@ function load_plugin() :void {
 	add_filter( 'wp_service_worker_plugin_asset_caching', __NAMESPACE__ . '\\theme_asset_caching' );
 	add_filter( 'wp_service_worker_core_asset_caching', __NAMESPACE__ . '\\theme_asset_caching' );
 
-	// UNUSED, at the moment
-	// @see docblock
-	//
-	// Enable offline music.
-	// add_filter( 'wp_front_service_worker', __NAMESPACE__ . '\\wp_front_service_worker__offline_media' );
+	/**
+	 * Enable offline media.
+	 *
+	 * UNUSED, at the moment
+	 *
+	 * @todo #25 Re-Enable offline media.
+	 *
+	 * @see docblock of wp_front_service_worker__offline_media()
+	 *
+	 * add_filter( 'wp_front_service_worker', __NAMESPACE__ . '\\wp_front_service_worker__offline_media' );
+	 */
 }
 
 /**
@@ -88,7 +102,30 @@ function filter_options() :void {
 		BASENAME,
 	);
 }
-
+/**
+ * Add the web app manifest url to the list of 'prefetch'ed ressources.
+ *
+ * The used filter: Filters domains and URLs for resource hints of relation type.
+ *
+ * @param array<int, string|array<string, string>>  $urls {
+ *     Array of resources and their attributes, or URLs to print for resource hints.
+ *
+ *     @type array|string ...$0 {
+ *         Array of resource attributes, or a URL string.
+ *
+ *         @type string $href        URL to include in resource hints. Required.
+ *         @type string $as          How the browser should treat the resource
+ *                                   (`script`, `style`, `image`, `document`, etc).
+ *         @type string $crossorigin Indicates the CORS policy of the specified resource.
+ *         @type float  $pr          Expected probability that the resource hint will be used.
+ *         @type string $type        Type of the resource (`text/html`, `text/css`, etc).
+ *     }
+ * }
+ * @param string $relation_type The relation type the URLs are printed for,
+ *                              e.g. 'preconnect' or 'prerender'.
+ *
+ * @return array<int, string|array<string, string>>
+ */
 function prefetch_manifest( array $urls, string $relation_type ) : array {
 
 	if ( ! class_exists( 'WP_Web_App_Manifest' ) ) {
@@ -102,60 +139,73 @@ function prefetch_manifest( array $urls, string $relation_type ) : array {
 	return $urls;
 }
 
+/**
+ * Overriding the (default) manifest json.
+ *
+ * There are more possible values for this, including 'orientation' and 'scope.'
+ * See the documentation: https://developers.google.com/web/fundamentals/web-app-manifest/
+ *
+ * @param array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
+ *
+ * @return array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
+ */
 function modify_manifest( array $manifest ) : array {
 
-	$manifest = __add_app_shortcuts( $manifest );
-	$manifest = __set_colors( $manifest );
-	$manifest = __set_defaults( $manifest );
-	$manifest = __set_screenshots( $manifest );
+	$manifest = set_shortcuts( $manifest );
+	$manifest = set_colors( $manifest );
+	$manifest = set_defaults( $manifest );
+	$manifest = set_screenshots( $manifest );
 
 	return $manifest;
 }
 
 /**
- * Enables overriding the manifest json.
+ * Provide an app shortcut to the latest news via either the defined blog_posts page or the default_category.
  *
- * There are more possible values for this, including 'orientation' and 'scope.'
- * See the documentation: https://developers.google.com/web/fundamentals/web-app-manifest/
+ * Overriding the (default) manifest json.
  *
- * @param array $manifest The manifest to send in the REST API response.
+ * @param array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
+ *
+ * @return array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
  */
-function __add_app_shortcuts( array $manifest ) : array {
+function set_shortcuts( array $manifest ) : array {
 
-	if ( $page_for_posts_id = \get_option( 'page_for_posts' ) ) {
-		$page_for_posts = \get_post( $page_for_posts_id );
+	$page_for_posts_id = get_option( 'page_for_posts' );
+	if ( \is_int( $page_for_posts_id ) && ! empty( $page_for_posts_id ) ) {
+		$page_for_posts = get_post( $page_for_posts_id );
 		if ( is_a( $page_for_posts, 'WP_Post' ) ) {
-			// $relative_url = str_replace(\home_url(), '', \get_permalink( $page_for_posts ));
-			$name    = \get_the_title( $page_for_posts );
-			$url     = \get_permalink( $page_for_posts );
-			$excerpt = \get_the_excerpt( $page_for_posts );
+			$name    = get_the_title( $page_for_posts );
+			$url     = get_permalink( $page_for_posts );
+			$excerpt = get_the_excerpt( $page_for_posts );
 		}
 	} else {
-		// try to use the default category for posts
-		// as the base url for any kind of news
-		$default_category = \get_term( \get_option( 'default_category' ), 'category' );
+		// Try to use the default category for posts
+		// as the base url for any kind of news.
+		$default_category = get_term( get_option( 'default_category' ), 'category' );
 		if ( is_a( $default_category, 'WP_Term' ) ) {
 			$name    = $default_category->name;
-			$url     = \get_term_link( $default_category );
+			$url     = get_term_link( $default_category );
 			$excerpt = $default_category->description;
 		}
 	}
 
-	if ( $name && \esc_url( $url ) ) {
+	if ( $name && \is_string( $url ) && esc_url( $url ) ) {
 
 		$excerpt = ( ! empty( $excerpt ) ) ? $excerpt : __( 'News', 'figurentheater' );
 
 		$manifest['shortcuts'][] = [
 			'name' => $name,
-			// "url"  => $relative_url,
 			'url'  => $url,
 			'description' => $excerpt,
 
-			// Icons 2 SVG 2 data-uri
-			// https://icon-sets.iconify.design/dashicons/admin-post/
+			/**
+			 * Icons 2 SVG 2 data-uri
+			 *
+			 * @see https://icon-sets.iconify.design/dashicons/admin-post/
+			 */
 			'icons' => [
 				[
-					'src'     => WP_CONTENT_URL . '/mu-plugins/Figuren_Theater/assets/svg/admin-post.svg',
+					'src'     => WPMU_PLUGIN_URL . Performance\ASSETS_URL . 'svg/admin-post.svg',
 					'type'    => 'image/svg+xml',
 					'purpose' => 'any monochrome',
 				],
@@ -166,7 +216,16 @@ function __add_app_shortcuts( array $manifest ) : array {
 	return $manifest;
 }
 
-function __set_colors( array $manifest ) : array {
+/**
+ * Provide app colors for background and theme.
+ *
+ * Overriding the (default) manifest json.
+ *
+ * @param array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
+ *
+ * @return array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
+ */
+function set_colors( array $manifest ) : array {
 	$relevant_colors = Themed_Login\ft_get_relevant_colors();
 
 	$manifest['background_color'] = $relevant_colors['ft_accent'];
@@ -176,33 +235,42 @@ function __set_colors( array $manifest ) : array {
 }
 
 /**
- * Enables overriding the manifest json.
+ * Provide app defaults for OS integration and UI.
  *
- * There are more possible values for this, including 'orientation' and 'scope.'
- * See the documentation: https://developers.google.com/web/fundamentals/web-app-manifest/
+ * Overriding the (default) manifest json.
  *
- * @param array $manifest The manifest to send in the REST API response.
+ * @param array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
+ *
+ * @return array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
  */
-function __set_defaults( array $manifest ) : array {
+function set_defaults( array $manifest ) : array {
 
 	$manifest['orientation'] = 'any';
 	$manifest['display']     = 'standalone';
 	$manifest['url_handler'] = [
-		'origin' => \home_url( '/', 'https' ),
+		'origin' => home_url( '/', 'https' ),
 	];
 
 	return $manifest;
 }
 
-function __set_screenshots( array $manifest ) : array {
+/**
+ * Provide an app screenshot of the home-page to be shown in the install dialog.
+ *
+ * Overriding the (default) manifest json.
+ *
+ * @param array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
+ *
+ * @return array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
+ */
+function set_screenshots( array $manifest ) : array {
 
 	if ( ! isset( $manifest['screenshots'] ) ) {
 		$manifest['screenshots'] = [];
 	}
 
 	$manifest['screenshots'][] = [
-		// 'src'   => \BrowserShots::get_shot( \home_url(), 900, 2000 ),
-		'src'   => get_shot( \home_url(), 900, 2000, 'home' ),
+		'src'   => get_shot( home_url(), 900, 2000, 'home' ),
 		'sizes' => '900x2000',
 		'type'  => 'image/jpeg',
 	];
