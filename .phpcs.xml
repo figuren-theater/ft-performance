@@ -15,6 +15,7 @@
 	and not running within ft-platform
 	-->
 	<exclude-pattern>*/wp-content/*</exclude-pattern>
+	<exclude-pattern>*/wordpress/*</exclude-pattern>
 
 	<!-- Use figuren.theater Coding Standards -->
 	<rule ref="figurentheater" />
