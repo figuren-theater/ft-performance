@@ -43,7 +43,7 @@
 		"wpackagist-plugin/sqlite-object-cache": "^1.3"
 	},
 	"require-dev": {
-		"figuren-theater/code-quality": "^0.6.7"
+		"figuren-theater/code-quality": "*"
 	},
 	"repositories": [
 		{
