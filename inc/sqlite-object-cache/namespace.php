@@ -17,7 +17,7 @@ use function remove_submenu_page;
 use function wp_dequeue_style;
 
 const BASENAME = 'sqlite-object-cache/sqlite-object-cache.php';
-const PLUGINPATH = BASENAME; // @TODO ugly hardcoded WP_CONTENT_DIR inside plugin, needs issue !!
+const PLUGINPATH = BASENAME; // @todo #26 ugly hardcoded WP_CONTENT_DIR inside 'sqlite-object-cache' plugin, needs issue !!
 
 /**
  * Bootstrap module, when enabled.

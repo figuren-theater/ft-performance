@@ -14,10 +14,13 @@ use FT_VENDOR_DIR;
 use function add_action;
 use function add_filter;
 use function current_user_can;
+use function get_post_types;
+use function get_taxonomies;
 use function is_network_admin;
 use function is_user_admin;
 use function remove_submenu_page;
 use function restore_current_blog;
+use function site_url;
 use function switch_to_blog;
 use function wp_clear_scheduled_hook;
 use function wp_installing;
@@ -75,7 +78,7 @@ function load_plugin() :void {
 	// fine tuning for curl requests
 	add_filter( 'wp-super-preload\curl_setopt', __NAMESPACE__ . '\\curl_setopt' );
 
-		add_action( 'admin_menu', __NAMESPACE__ . '\\remove_menu', 11 );
+	add_action( 'admin_menu', __NAMESPACE__ . '\\remove_menu', 11 );
 }
 
 /**
@@ -93,14 +96,21 @@ function filter_options() :void {
 		[],
 		BASENAME,
 	);
-	$super_preload_settings->set_filter_callback( __NAMESPACE__ . '\\__pre_option_super_preload_settings' );
+	$super_preload_settings->set_filter_callback( __NAMESPACE__ . '\\pre_option_super_preload_settings' );
 }
 
-function __pre_option_super_preload_settings() {
-	return __specific_super_preload_settings( __static_super_preload_settings() );
+function pre_option_super_preload_settings() {
+	return specific_super_preload_settings( static_super_preload_settings() );
 }
 
-function __static_super_preload_settings() : array {
+/**
+ *
+ *
+ * @access private
+ *
+ * @return array
+ */
+function static_super_preload_settings() : array {
 	return [
 		// Basic settings
 		'sitemap_urls'         => '',    // textarea // will be prepared during 'enable'
@@ -139,10 +149,19 @@ function __static_super_preload_settings() : array {
 	];
 }
 
-function __specific_super_preload_settings( array $super_preload_settings ) : array {
+/**
+ *
+ *
+ * @access private
+ *
+ * @param  array $super_preload_settings
+ *
+ * @return array
+ */
+function specific_super_preload_settings( array $super_preload_settings ) : array {
 
 	$_public_post_types = array_merge(
-		\get_post_types( [
+		get_post_types( [
 			'public'   => true,
 			'_builtin' => false,
 		] ),
@@ -158,7 +177,7 @@ function __specific_super_preload_settings( array $super_preload_settings ) : ar
 	}
 
 	$_public_taxonomies = array_merge(
-		\get_taxonomies( [
+		get_taxonomies( [
 			'public'   => true,
 			'_builtin' => false,
 		] ),
@@ -169,15 +188,16 @@ function __specific_super_preload_settings( array $super_preload_settings ) : ar
 	);
 
 	$_sitemap_urls_of_current_site = array_merge(
-		__get_sitemap_urls( $_public_post_types ),
-		__get_sitemap_urls( $_public_taxonomies ),
+		get_sitemap_urls( $_public_post_types ),
+		get_sitemap_urls( $_public_taxonomies ),
 	);
 
+	// @todo #27 Remove & avoid dependency hell
 	$_has_multiple_authors = ( ! Figuren_Theater\FT::site()->has_feature( [ 'einsamer-wolf' ] ) ) ? true : false;
 
-	// update our options
+	// Update our options.
 	$super_preload_settings['sitemap_urls'] = join( ' ', $_sitemap_urls_of_current_site );
-		$super_preload_settings['additional_contents']['authors'] = $_has_multiple_authors;
+	$super_preload_settings['additional_contents']['authors'] = $_has_multiple_authors;
 
 	return $super_preload_settings;
 }
@@ -189,11 +209,19 @@ function default_option_super_preload_updates() {
 		'next_preload' => 0,
 	];
 }
-
-function __get_sitemap_urls( array $data_names ) : array {
+/**
+ * Get a list of valid (yoast-like) sitemap.xml URLs for the given post_types & taxonomies.
+ *
+ * @access private
+ *
+ * @param  array $data_names List of post_types- and/or taxonomies-slugs.
+ *
+ * @return array
+ */
+function get_sitemap_urls( array $data_names ) : array {
 	return array_map(
 		function( string $data_name ) : string {
-			return \site_url( '/' . $data_name . '-sitemap.xml', 'https' );
+			return site_url( '/' . $data_name . '-sitemap.xml', 'https' );
 		},
 		$data_names
 	);
@@ -205,30 +233,33 @@ function __get_sitemap_urls( array $data_names ) : array {
  * @since  1.6.0
  * @since  1.8.0  The `$cache_cleared_index` parameter was added.
  *
- * @param  string   $(page|site)_cleared_url     Full URL of the (page|site) cleared.
- * @param  int      $(page|site)_cleared_id      ID of the (page|site) cleared.
- * @param  array[]  $cache_cleared_index         Index of the cache cleared.
+ * @param  string   $cleared_url          Full URL of the (page|site) cleared.
+ * @param  int      $cleared_site_id      ID of the (page|site) cleared.
+ * @param  array[]  $cache_cleared_index  Index of the cache cleared.
+ *
+ * @return void
  */
-function on_site_cache_deletion( string $cleared_url, int $cleared_site_id, array $cache_cleared_index ) {
-	// error_log('1  ##### on_site_cache_deletion::: on blog '.get_current_blog_id());
-
-	// error_log('$cleared_url: '.$cleared_url);
-	// error_log('$cleared_id: '.$cleared_site_id);
+function on_site_cache_deletion( string $cleared_url, int $cleared_site_id, array $cache_cleared_index ) : void {
 
 	switch_to_blog( $cleared_site_id );
 
-	__shedule_preload_on_cache_deletion( $cleared_url, $cleared_site_id, 'site' );
+	shedule_preload_on_cache_deletion( $cleared_url, $cleared_site_id, 'site' );
 
 	restore_current_blog();
 }
 
-/*
-function on_page_cache_deletion( string $cleared_url, int $cleared_page_id, $cache_cleared_index ) {
-	__shedule_preload_on_cache_deletion( $cleared_url, $cleared_page_id, 'page' );
-}
-*/
-
-function __shedule_preload_on_cache_deletion( string $url, int $id, string $preload_type ) {
+/**
+ *
+ *
+ * @access private
+ *
+ * @param  string $url
+ * @param  int    $id
+ * @param  string $preload_type
+ *
+ * @return void
+ */
+function shedule_preload_on_cache_deletion( string $url, int $id, string $preload_type ) : void {
 
 	if ( wp_installing() ) {
 		return;
@@ -240,12 +271,9 @@ function __shedule_preload_on_cache_deletion( string $url, int $id, string $prel
 		$url,
 		$id,
 	];
-	// error_log('2  ##### __shedule_preload_on_cache_deletion::: on blog '.get_current_blog_id());
 	$_wp_next_scheduled = wp_next_scheduled( $preload_handle, $hook_args );
-	// error_log('wp_next_scheduled::  '.$preload_handle.': '.var_export([$_wp_next_scheduled,$url,$id],true));
 
 	$_calc = ( $_wp_next_scheduled < MINUTE_IN_SECONDS );
-	// error_log('$_wp_next_scheduled < MINUTE_IN_SECONDS   '.var_export([$_calc],true));
 
 	if ( $_calc && false !== $_wp_next_scheduled ) {
 		return;
@@ -256,61 +284,52 @@ function __shedule_preload_on_cache_deletion( string $url, int $id, string $prel
 	// when any post is updated.
 	//
 	// Sow we can safely ignore all explicit page-handling
-	// as it will be pre-loaded via sitemap
+	// as it will be pre-loaded via sitemap.
 	//
 	// But we've to make sure
-	// to not create any duplicate-cron-jobs
-	$_wp_clear_scheduled_hook = wp_clear_scheduled_hook( $preload_handle, $hook_args );
-		$timestamp = strtotime( '+130 seconds' ); // 30sec was sometimes ok, but I think sometimes the sitemaps are not prepared yet, which results in half-and-half-results
-	$_wp_schedule_event = wp_schedule_event(
+	// to not create any duplicate-cron-jobs.
+	wp_clear_scheduled_hook( $preload_handle, $hook_args );
+
+	$timestamp = strtotime( '+130 seconds' ); // 30sec was sometimes ok, but I think sometimes the sitemaps are not prepared yet, which results in half-and-half-results
+	wp_schedule_event(
 		$timestamp,
 		// 'twicedaily',
-		__static_super_preload_settings()['preload_freq'],
+		static_super_preload_settings()['preload_freq'],
 		$preload_handle,
 		$hook_args
 	);
-
-	// error_log('wp_clear_scheduled_hook::  '.$preload_handle.': '.var_export($_wp_clear_scheduled_hook,true));
-	// error_log('wp_schedule_event::  '.$preload_handle.': '.var_export($_wp_schedule_event,true));
 }
 
 /**
- * if this is called as cron,
+ * If this is called as cron,
  * it gets now parameters added.
  * Thats why we give such useless defaults.
- *
- * @package project_name
- * @version version
- * @author  Carsten Bach
  *
  * @param   string       $cleared_url [description]
  * @param   integer      $cleared_id  [description]
  */
 function preload_on_site_cache_deletion( string $cleared_url = '', int $cleared_id = 0 ) {
-	// error_log('3  #### preload_on_site_cache_deletion on blog '.get_current_blog_id());
-	// error_log('preload_on_site_cache_deletion:: $cleared_url: '.$cleared_url);
-	// error_log('preload_on_site_cache_deletion:: $cleared_id: '.$cleared_id);
 
-	// may not been set
+	// May not been set.
 	if ( 0 < $cleared_id ) {
 		switch_to_blog( $cleared_id );
 	}
 
-	// get Plugin path (to get the right instance)
-	// $path = WP_PLUGIN_DIR . '/' . BASENAME;
-	$path = PLUGINPATH;
+	// Get Plugin path (to get the right instance).
+	$path = FT_VENDOR_DIR . PLUGINPATH;
 
-	// get THE one instance from plugin class
+	// Get THE one instance from plugin class.
 	$wp_super_preload = WP_Super_Preload::get_instance( $path );
-	// ´run over all sitemaps and curl all URLs
+
+	// Run over all sitemaps and curl all URLs.
 	$wp_super_preload->exec_preload();
 
-	// may not been set
+	// May not been set.
 	if ( 0 < $cleared_id ) {
 		restore_current_blog();
 	}
 
-	// run only once
+	// Run only once.
 	// wp_clear_scheduled_hook( "ft_preload_site_cache", [ $cleared_url, $cleared_id ] );
 	// wp_clear_scheduled_hook( "ft_preload_site_cache", [] );
 }
