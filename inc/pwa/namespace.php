@@ -14,6 +14,7 @@ use Figuren_Theater\Theming\Themed_Login;
 use FT_VENDOR_DIR;
 use function add_action;
 use function add_filter;
+use function add_query_arg;
 use function esc_url;
 use function get_option;
 use function get_permalink;
@@ -23,6 +24,7 @@ use function get_term_link;
 use function get_the_excerpt;
 use function get_the_title;
 use function home_url;
+use function rawurlencode;
 use WPMU_PLUGIN_URL;
 use WP_DEBUG;
 use WP_Post;
@@ -228,6 +230,8 @@ function set_shortcuts( array $manifest ) : array {
  *
  * Overriding the (default) manifest json.
  *
+ * @todo #29 Remove spaghetti-dependency to f.t/ft-theming
+ *
  * @param array<string, mixed> $manifest Data of the manifest, to send in the REST API response.
  *
  * @return array<string, mixed> $manifest Data of the manifest, to send in the REST API response.
@@ -308,12 +312,14 @@ function get_shot( string $url = '', int $width = 600, int $height = 450, string
 
 	// Image found.
 	if ( '' !== $url ) {
-		/*
+		/**
 		 * Possible indexes are: 'vpw', 'vph' and 'scale'.
+		 *
+		 * @param array<string, string> $args Service arguments of the wp.com/mshots API.
 		 */
 		$args = [
-			'vpw' => intval( $width ),
-			'vph' => intval( $height ),
+			'vpw' => (string) $width,
+			'vph' => (string) $height,
 		];
 
 		$remote_url = 'https://s0.wp.com/mshots/v1/' . rawurlencode( esc_url( $url ) );
@@ -327,8 +333,8 @@ function get_shot( string $url = '', int $width = 600, int $height = 450, string
 		 *
 		 * @see  https://docs.wpvip.com/technical-references/code-quality-and-best-practices/encode-values-passed-to-add_query_arg/
 		 */
-		$args       = array_map( 'rawurlencode', $args );
-		$remote_url = \add_query_arg( $args, $remote_url );
+		$args       = \array_map( 'rawurlencode', $args );
+		$remote_url = add_query_arg( $args, $remote_url );
 
 		return $remote_url;
 	}

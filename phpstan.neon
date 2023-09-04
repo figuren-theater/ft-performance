@@ -19,8 +19,7 @@ parameters:
             - wp-content/
             - tests/
     ignoreErrors:
-        - '#Constant WPMU_PLUGIN_URL not found\.#'
-        - '#Constant WP_PLUGIN_DIR not found\.#'
+        - '#Constant FT_CORESITES not found\.#'
         - '#Call to static method site\(\) on an unknown class Figuren_Theater\\FT\.#'
 
         # Find a nicer way instead of ignoring this Error on every ft-module

@@ -18,7 +18,7 @@ const ASSETS_URL = '/FT/ft-performance/assets/';
  */
 function register() :void {
 
-	$use_cache = defined( 'WP_CACHE' ) && constant( 'WP_CACHE' );
+	$use_cache = defined( 'WP_CACHE' ) ? constant( 'WP_CACHE' ) : false;
 
 	$default_settings = [
 		'enabled'             => true,  // Needs to be set.

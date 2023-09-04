@@ -4,7 +4,7 @@
  *
  * @package           figuren-theater/ft-performance
  * @author            figuren.theater
- * @copyright         2022 figuren.theater
+ * @copyright         2023 figuren.theater
  * @license           GPL-3.0-or-later
  *
  * @wordpress-plugin

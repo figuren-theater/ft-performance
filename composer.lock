@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d59a08508e605248adf015a669d79a7",
+    "content-hash": "af5af967813febb5a600dee65799bd96",
     "packages": [
         {
             "name": "carstingaxion/cache-control",
@@ -279,6 +279,81 @@
                 "source": "https://github.com/figuren-theater/ft-options"
             },
             "time": "2023-02-02T15:23:09+00:00"
+        },
+        {
+            "name": "figuren-theater/ft-theming",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/figuren-theater/ft-theming.git",
+                "reference": "5c20212690d6c85cbb60fd34ad66e9af1495b11b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/figuren-theater/ft-theming/zipball/5c20212690d6c85cbb60fd34ad66e9af1495b11b",
+                "reference": "5c20212690d6c85cbb60fd34ad66e9af1495b11b",
+                "shasum": ""
+            },
+            "require": {
+                "figuren-theater/ft-options": "^1",
+                "php": ">=7.1",
+                "wpackagist-plugin/wp-better-emails": "^0.4.0"
+            },
+            "require-dev": {
+                "figuren-theater/code-quality": "^0.6.6"
+            },
+            "type": "wordpress-muplugin",
+            "extra": {
+                "altis": {
+                    "install-overrides": [
+                        "wpackagist-plugin/wp-better-emails"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "inc/theming/defer-async-loader.php",
+                    "inc/theming/favicon-fallback.php",
+                    "inc/theming/no-jquery-migrate.php",
+                    "inc/theming/themed-login.php",
+                    "inc/wp-better-emails/namespace.php",
+                    "inc/namespace.php"
+                ],
+                "classmap": [
+                    "inc/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "figuren.theater",
+                    "email": "info@figuren.theater"
+                },
+                {
+                    "name": "Carsten Bach",
+                    "email": "mail@carsten-bach.de",
+                    "homepage": "https://carsten-bach.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This package helps you & your brand with a consistent look across the figuren.theater Multisite network and beyond.",
+            "homepage": "https://websites.fuer.figuren.theater",
+            "keywords": [
+                "branding",
+                "corporate",
+                "design",
+                "theming",
+                "wordpress"
+            ],
+            "support": {
+                "email": "info@figuren.theater",
+                "issues": "https://github.com/figuren-theater/ft-theming/issues",
+                "source": "https://github.com/figuren-theater/ft-theming"
+            },
+            "time": "2023-07-18T13:54:14+00:00"
         },
         {
             "name": "johnpbloch/wordpress",
@@ -581,6 +656,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/sqlite-object-cache/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-better-emails",
+            "version": "0.4",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-better-emails/",
+                "reference": "tags/0.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-better-emails.0.4.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-better-emails/"
         }
     ],
     "packages-dev": [
