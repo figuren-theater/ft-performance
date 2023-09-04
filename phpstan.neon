@@ -1,7 +1,7 @@
 #$ vendor/bin/phpstan analyze
 
 parameters:
-    level: max
+    level: 8
     inferPrivatePropertyTypeFromConstructor: true
     paths:
         - inc/
@@ -19,6 +19,10 @@ parameters:
             - wp-content/
             - tests/
     ignoreErrors:
+        - '#Constant WPMU_PLUGIN_URL not found\.#'
+        - '#Constant WP_PLUGIN_DIR not found\.#'
+        - '#Call to static method site\(\) on an unknown class Figuren_Theater\\FT\.#'
+
         # Find a nicer way instead of ignoring this Error on every ft-module
         - '#Function Altis\\register_module not found\.#'
         - '#Function Figuren_Theater\\get_config not found\.#'

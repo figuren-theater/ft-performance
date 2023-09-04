@@ -15,6 +15,7 @@ use function current_user_can;
 use function get_current_screen;
 use function remove_submenu_page;
 use function wp_dequeue_style;
+use WP_PLUGIN_DIR;
 
 const BASENAME = 'sqlite-object-cache/sqlite-object-cache.php';
 const PLUGINPATH = BASENAME; // @todo #26 ugly hardcoded WP_CONTENT_DIR inside 'sqlite-object-cache' plugin, needs issue !!

@@ -25,6 +25,8 @@ use function get_the_title;
 use function home_url;
 use WPMU_PLUGIN_URL;
 use WP_DEBUG;
+use WP_Post;
+use WP_Term;
 use WP_Web_App_Manifest;
 
 const BASENAME   = 'pwa/pwa.php';
@@ -102,6 +104,7 @@ function filter_options() :void {
 		BASENAME,
 	);
 }
+
 /**
  * Add the web app manifest url to the list of 'prefetch'ed ressources.
  *
@@ -145,9 +148,9 @@ function prefetch_manifest( array $urls, string $relation_type ) : array {
  * There are more possible values for this, including 'orientation' and 'scope.'
  * See the documentation: https://developers.google.com/web/fundamentals/web-app-manifest/
  *
- * @param array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
+ * @param array<string, mixed> $manifest Data of the manifest, to send in the REST API response.
  *
- * @return array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
+ * @return array<string, mixed> $manifest Data of the manifest, to send in the REST API response.
  */
 function modify_manifest( array $manifest ) : array {
 
@@ -164,16 +167,16 @@ function modify_manifest( array $manifest ) : array {
  *
  * Overriding the (default) manifest json.
  *
- * @param array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
+ * @param array<string, mixed> $manifest Data of the manifest, to send in the REST API response.
  *
- * @return array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
+ * @return array<string, mixed> $manifest Data of the manifest, to send in the REST API response.
  */
 function set_shortcuts( array $manifest ) : array {
 
 	$page_for_posts_id = get_option( 'page_for_posts' );
 	if ( \is_int( $page_for_posts_id ) && ! empty( $page_for_posts_id ) ) {
 		$page_for_posts = get_post( $page_for_posts_id );
-		if ( is_a( $page_for_posts, 'WP_Post' ) ) {
+		if ( $page_for_posts instanceof WP_Post ) {
 			$name    = get_the_title( $page_for_posts );
 			$url     = get_permalink( $page_for_posts );
 			$excerpt = get_the_excerpt( $page_for_posts );
@@ -181,15 +184,19 @@ function set_shortcuts( array $manifest ) : array {
 	} else {
 		// Try to use the default category for posts
 		// as the base url for any kind of news.
-		$default_category = get_term( get_option( 'default_category' ), 'category' );
-		if ( is_a( $default_category, 'WP_Term' ) ) {
+		$default_category = get_term( (int) get_option( 'default_category' ), 'category' );
+		if ( $default_category instanceof WP_Term ) {
 			$name    = $default_category->name;
 			$url     = get_term_link( $default_category );
 			$excerpt = $default_category->description;
 		}
 	}
 
-	if ( $name && \is_string( $url ) && esc_url( $url ) ) {
+	if ( ! isset( $name ) || ! isset( $url ) ) {
+		return $manifest;
+	}
+
+	if ( \is_string( $url ) && esc_url( $url ) ) {
 
 		$excerpt = ( ! empty( $excerpt ) ) ? $excerpt : __( 'News', 'figurentheater' );
 
@@ -221,9 +228,9 @@ function set_shortcuts( array $manifest ) : array {
  *
  * Overriding the (default) manifest json.
  *
- * @param array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
+ * @param array<string, mixed> $manifest Data of the manifest, to send in the REST API response.
  *
- * @return array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
+ * @return array<string, mixed> $manifest Data of the manifest, to send in the REST API response.
  */
 function set_colors( array $manifest ) : array {
 	$relevant_colors = Themed_Login\ft_get_relevant_colors();
@@ -239,9 +246,9 @@ function set_colors( array $manifest ) : array {
  *
  * Overriding the (default) manifest json.
  *
- * @param array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
+ * @param array<string, mixed> $manifest Data of the manifest, to send in the REST API response.
  *
- * @return array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
+ * @return array<string, mixed> $manifest Data of the manifest, to send in the REST API response.
  */
 function set_defaults( array $manifest ) : array {
 
@@ -259,9 +266,9 @@ function set_defaults( array $manifest ) : array {
  *
  * Overriding the (default) manifest json.
  *
- * @param array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
+ * @param array<string, mixed> $manifest Data of the manifest, to send in the REST API response.
  *
- * @return array<string, string|array<string, string>> $manifest Data of the manifest, to send in the REST API response.
+ * @return array<string, mixed> $manifest Data of the manifest, to send in the REST API response.
  */
 function set_screenshots( array $manifest ) : array {
 
@@ -299,7 +306,7 @@ function get_shot( string $url = '', int $width = 600, int $height = 450, string
 
 	// $new_name = 'pwa-'.$new_name.'.jpeg';
 
-	// $dir = $this->set_screenshots_dir_path();
+	// $dir = $this->set_screenshots_dir_path(); // !
 	// $new_file = $dir.'/'.$new_name;
 
 	// already cached ?
@@ -314,15 +321,16 @@ function get_shot( string $url = '', int $width = 600, int $height = 450, string
 	// file not older than 60 seconds // DEBUG
 	// ! ( time() - filemtime($new_file) > 60 )
 	// )
-	// return $this->set_screenshots_dir_url() . $new_name;
+	// return $this->set_screenshots_dir_url() . $new_name; //!
 
 	// Image found.
 	if ( '' !== $url ) {
-
+		/*
+		 * Possible indexes are: 'vpw', 'vph' and 'scale'.
+		 */
 		$args = [
 			'vpw' => intval( $width ),
 			'vph' => intval( $height ),
-			// 'scale' => 2,
 		];
 
 		$remote_url = 'https://s0.wp.com/mshots/v1/' . rawurlencode( esc_url( $url ) );
@@ -345,6 +353,35 @@ function get_shot( string $url = '', int $width = 600, int $height = 450, string
 	return '';
 }
 
+/**
+ * Filters service worker caching configuration for theme asset requests.
+ *
+ * @since PWA 0.6
+ *
+ * @param array<string, string|null|array<mixed>> $config {
+ *     Theme asset caching configuration. If array filtered to be empty, then caching is disabled.
+ *
+ *     @type string     $route      Route. Regular expression pattern to match. See <https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-routing#.registerRoute>.
+ *     @type string     $strategy   Strategy. Defaults to NetworkFirst.
+ *                                  Even though assets should have far-future expiration, network-first is still preferred for development purposes.
+ *                                  See <https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-strategies>.
+ *     @type string     $cache_name Cache name. Defaults to 'uploaded-images'. This will get a site-specific prefix to prevent subdirectory multisite conflicts.
+ *     @type array|null $expiration {
+ *          Expiration plugin configuration. See <https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-expiration.ExpirationPlugin>.
+ *
+ *          @type int|null $max_entries     Max entries to cache. Defaults to 34.
+ *                                          This limit the cached entries to the number of files loaded over network, e.g. JS, CSS, and PNG.
+ *                                          The number 34 is derived from the 75th percentile of theme assets used on pages served from
+ *                                          WordPress sites, as indexed by HTTP Archive.
+ *                                          See https://github.com/GoogleChromeLabs/pwa-wp/issues/265#issuecomment-706612536.
+ *          @type int|null $max_age_seconds Max age seconds. Defaults to null.
+ *     }
+ *     @type array|null $broadcast_update   Broadcast update plugin configuration. Not included by default. See <https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-broadcast-update.BroadcastUpdatePlugin>.
+ *     @type array|null $cacheable_response Cacheable response plugin configuration. Not included by default. See <https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-cacheable-response.CacheableResponsePlugin>.
+ * }
+ *
+ * @return array<string, string|null|array<mixed>>
+ */
 function theme_asset_caching( array $config ) : array {
 	// 'NetworkFirst' is the default.
 	$config['strategy'] = \WP_Service_Worker_Caching_Routes::STRATEGY_STALE_WHILE_REVALIDATE;
@@ -422,7 +459,7 @@ __// TEMP DISABLED :: END
 	 * @author  Carsten Bach
 	 *
 	 * @param   \WP_Service_Worker_Scripts $scripts [description]
-	 * @return  [type]                              [description]
+	 * @return  void
 
 	function wp_front_service_worker__offline_media( \WP_Service_Worker_Scripts $scripts )
 	{
