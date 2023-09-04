@@ -94,7 +94,7 @@ function filter_options() :void {
 }
 
 /**
- *
+ * Get all options, that this plugin uses, prepared for 'pre_get_option'.
  *
  * @return array<string, bool|string|array<mixed>>
  */
@@ -103,7 +103,7 @@ function pre_option_super_preload_settings() : array {
 }
 
 /**
- *
+ * Get static & fixed options, that this plugin uses, prepared for 'pre_get_option'.
  *
  * @access private
  *
@@ -145,11 +145,11 @@ function static_super_preload_settings() : array {
 }
 
 /**
- *
+ * Get dynamic parts of the options, that this plugin uses, prepared for 'pre_get_option'.
  *
  * @access private
  *
- * @param  array<string, bool|string|array<mixed>> $super_preload_settings
+ * @param  array<string, bool|string|array<mixed>> $super_preload_settings Static default parts of 'super_preload_settings'.
  *
  * @return array<string, bool|string|array<mixed>>
  */
@@ -201,7 +201,7 @@ function specific_super_preload_settings( array $super_preload_settings ) : arra
 }
 
 /**
- *
+ * Bare bone defaults of get_option('super_preload_settings').
  *
  * @return array<string, int|string>
  */
@@ -245,7 +245,7 @@ function get_sitemap_urls( array $data_names ) : array {
  */
 function on_site_cache_deletion( string $cleared_url, int $cleared_site_id, array $cache_cleared_index ) : void {
 
-	switch_to_blog( $cleared_site_id );
+	switch_to_blog( $cleared_site_id ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.switch_to_blog_switch_to_blog
 
 	shedule_preload_on_cache_deletion( $cleared_url, $cleared_site_id, 'site' );
 
@@ -253,13 +253,13 @@ function on_site_cache_deletion( string $cleared_url, int $cleared_site_id, arra
 }
 
 /**
- *
+ * Shedule the next cache-preload if it is not already sheduled within the next minute.
  *
  * @access private
  *
- * @param  string $url
- * @param  int    $id
- * @param  string $preload_type
+ * @param  string $url             Full URL of the (page|site) cleared.
+ * @param  int    $id              ID of the (page|site) cleared.
+ * @param  string $preload_type    Can be either 'site' or 'page'.
  *
  * @return void
  */
@@ -324,7 +324,7 @@ function preload_on_site_cache_deletion( string $cleared_url = '', int $cleared_
 
 	// May not been set.
 	if ( 0 < $cleared_id ) {
-		switch_to_blog( $cleared_id );
+		switch_to_blog( $cleared_id ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.switch_to_blog_switch_to_blog
 	}
 
 	// Get Plugin path (to get the right instance).

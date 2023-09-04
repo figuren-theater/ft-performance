@@ -290,8 +290,10 @@ function set_screenshots( array $manifest ) : array {
  *
  * Get a screenshot of a website using Automatics mShots service.
  *
- * @see https://github.com/BinaryMoon/browser-shots/blob/master/browser-shots.php#L176-L202
- * @see https://github.com/Automattic/mShots/blob/master/public_html/class-mshots.php
+ * @todo   #28  Re-Enable locale storage for PWA screenshots (privacy)
+ *
+ * @see    https://github.com/BinaryMoon/browser-shots/blob/master/browser-shots.php#L176-L202
+ * @see    https://github.com/Automattic/mShots/blob/master/public_html/class-mshots.php
  *
  * @since  1.3 Removed call $this->save_screenshot( $remote_url, $new_name )
  *
@@ -303,25 +305,6 @@ function set_screenshots( array $manifest ) : array {
  * @return string
  */
 function get_shot( string $url = '', int $width = 600, int $height = 450, string $new_name = '' ) : string {
-
-	// $new_name = 'pwa-'.$new_name.'.jpeg';
-
-	// $dir = $this->set_screenshots_dir_path(); // !
-	// $new_file = $dir.'/'.$new_name;
-
-	// already cached ?
-	// DISABLED,
-	// because it's nothing saved
-	// to pick up here
-	// if (
-	// file_exists($new_file)
-	// &&
-	// file not older than 7 days
-	// ! ( time() - filemtime($new_file) > 7 * 24 * 3600 )
-	// file not older than 60 seconds // DEBUG
-	// ! ( time() - filemtime($new_file) > 60 )
-	// )
-	// return $this->set_screenshots_dir_url() . $new_name; //!
 
 	// Image found.
 	if ( '' !== $url ) {
