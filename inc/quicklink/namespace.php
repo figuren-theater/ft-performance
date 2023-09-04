@@ -2,45 +2,59 @@
 /**
  * Figuren_Theater Performance Quicklink.
  *
- * @package figuren-theater/performance/quicklink
+ * @package figuren-theater/ft-performance
  */
 
 namespace Figuren_Theater\Performance\Quicklink;
 
-use FT_CORESITES;
-use FT_VENDOR_DIR;
-
 use Figuren_Theater;
-use function Figuren_Theater\get_config;
+use FT_CORESITES;
 
+use FT_VENDOR_DIR;
 use function add_action;
+
 use function add_filter;
 use function get_home_url;
 use function home_url;
 use function wp_parse_url;
 
 const BASENAME   = 'quicklink/quicklink.php';
-const PLUGINPATH = FT_VENDOR_DIR . '/wpackagist-plugin/' . BASENAME;
+const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
 
 /**
  * Bootstrap module, when enabled.
+ *
+ * @return void
  */
-function bootstrap() {
+function bootstrap() :void {
 
 	add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_plugin', 0 );
 }
 
-function load_plugin() {
+/**
+ * Conditionally load the plugin itself and its modifications.
+ *
+ * @return void
+ */
+function load_plugin() :void {
 
 	$config = Figuren_Theater\get_config()['modules']['performance'];
-	if ( ! $config['quicklink'] )
-		return; // early
+	if ( ! $config['quicklink'] ) {
+		return;
+	}
 
-	require_once PLUGINPATH;
+	require_once FT_VENDOR_DIR . PLUGINPATH; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingCustomConstant
 
 	add_filter( 'quicklink_options', __NAMESPACE__ . '\\filter_js_options' );
 }
 
+/**
+ * Add the f.t platform URLs to the quicklink allow-list.
+ *
+ * @param  array<string, mixed> $options Array of options of the 'Quicklinks' plugin.
+ *
+ * @return array<string, mixed>
+ */
 function filter_js_options( array $options ) : array {
 
 	$ft_ids = array_flip( FT_CORESITES );
