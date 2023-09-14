@@ -2,7 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-performance/compare/1.3.0...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-performance/compare/1.3.1...HEAD)
+
+## [1.3.1](https://github.com/figuren-theater/ft-performance/compare/1.3.0...1.3.1) - 2023-09-14
+
+### Dependency Updates & Maintenance
+
+- Bump figuren-theater/ft-options from 1.1.10 to 1.2.3 ([#30](https://github.com/figuren-theater/ft-performance/pull/30))
+- Bump wpackagist-plugin/fast404 from 1.1 to 1.2 ([#21](https://github.com/figuren-theater/ft-performance/pull/21))
+- Bump wpackagist-plugin/sqlite-object-cache from 1.3.1 to 1.3.4 ([#20](https://github.com/figuren-theater/ft-performance/pull/20))
 
 ## [1.3.0](https://github.com/figuren-theater/ft-performance/compare/1.2.6...1.3.0) - 2023-09-04
 
