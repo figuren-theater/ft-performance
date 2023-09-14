@@ -234,27 +234,30 @@
         },
         {
             "name": "figuren-theater/ft-options",
-            "version": "1.1.10",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/figuren-theater/ft-options.git",
-                "reference": "6ac6d17165a472f1927fe42f891d62a79abb5765"
+                "reference": "127e6c8bb62cce778ee7468aa548c8326fe9c29a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/figuren-theater/ft-options/zipball/6ac6d17165a472f1927fe42f891d62a79abb5765",
-                "reference": "6ac6d17165a472f1927fe42f891d62a79abb5765",
+                "url": "https://api.github.com/repos/figuren-theater/ft-options/zipball/127e6c8bb62cce778ee7468aa548c8326fe9c29a",
+                "reference": "127e6c8bb62cce778ee7468aa548c8326fe9c29a",
                 "shasum": ""
             },
             "require": {
                 "markjaquith/wp-tlc-transients": "^1.0",
-                "php": ">=7.1"
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "figuren-theater/code-quality": "*"
             },
             "type": "wordpress-muplugin",
             "autoload": {
-                "psr-4": {
-                    "Figuren_Theater\\Options\\": "inc/"
-                }
+                "classmap": [
+                    "inc/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -285,7 +288,7 @@
                 "issues": "https://github.com/figuren-theater/ft-options/issues",
                 "source": "https://github.com/figuren-theater/ft-options"
             },
-            "time": "2023-02-02T15:23:09+00:00"
+            "time": "2023-09-11T10:27:33+00:00"
         },
         {
             "name": "figuren-theater/ft-theming",
