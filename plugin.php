@@ -1,17 +1,17 @@
 <?php
 /**
- * ft-performance
+ * Fast websites are more accessible, more sustainable and are giving a better UX. This is the code which accelerates figuren.theater and its WordPress Multisite Network.
  *
- * @package           figuren-theater/performance
+ * @package           figuren-theater/ft-performance
  * @author            figuren.theater
- * @copyright         2022 figuren.theater
+ * @copyright         2023 figuren.theater
  * @license           GPL-3.0-or-later
  *
  * @wordpress-plugin
  * Plugin Name:       figuren.theater | Performance
  * Plugin URI:        https://github.com/figuren-theater/ft-performance
  * Description:       Fast websites are more accessible, more sustainable and are giving a better UX. This is the code which accelerates figuren.theater and its WordPress Multisite Network.
- * Version:           1.2.6
+ * Version:           1.3.0
  * Requires at least: 6.0
  * Requires PHP:      7.2
  * Author:            figuren.theater
@@ -22,7 +22,6 @@
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
  * Update URI:        https://github.com/figuren-theater/ft-performance
  */
-
 
 namespace Figuren_Theater\Performance;
 

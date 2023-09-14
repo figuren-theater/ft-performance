@@ -1,0 +1,27 @@
+#$ vendor/bin/phpstan analyze
+
+parameters:
+    level: 8
+    inferPrivatePropertyTypeFromConstructor: true
+    paths:
+        - inc/
+        - plugin.php
+    excludePaths:
+        analyseAndScan:
+            # Prevent phpstan from multiple definitions of the same things,
+            # because we already use phpstan/wordpress-stubs
+            - wordpress/
+        analyse:
+            - vendor/
+            # "/wp-content/" is created during composer install,
+            # when package is tested
+            # and not running within ft-platform
+            - wp-content/
+            - tests/
+    ignoreErrors:
+        - '#Constant FT_CORESITES not found\.#'
+        - '#Call to static method site\(\) on an unknown class Figuren_Theater\\FT\.#'
+
+        # Find a nicer way instead of ignoring this Error on every ft-module
+        - '#Function Altis\\register_module not found\.#'
+        - '#Function Figuren_Theater\\get_config not found\.#'
