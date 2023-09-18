@@ -292,16 +292,16 @@
         },
         {
             "name": "figuren-theater/ft-theming",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/figuren-theater/ft-theming.git",
-                "reference": "5c20212690d6c85cbb60fd34ad66e9af1495b11b"
+                "reference": "d3edb63b17c7e18dd241eba1effa13436894ce13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/figuren-theater/ft-theming/zipball/5c20212690d6c85cbb60fd34ad66e9af1495b11b",
-                "reference": "5c20212690d6c85cbb60fd34ad66e9af1495b11b",
+                "url": "https://api.github.com/repos/figuren-theater/ft-theming/zipball/d3edb63b17c7e18dd241eba1effa13436894ce13",
+                "reference": "d3edb63b17c7e18dd241eba1effa13436894ce13",
                 "shasum": ""
             },
             "require": {
@@ -310,7 +310,7 @@
                 "wpackagist-plugin/wp-better-emails": "^0.4.0"
             },
             "require-dev": {
-                "figuren-theater/code-quality": "^0.6.6"
+                "figuren-theater/code-quality": "*"
             },
             "type": "wordpress-muplugin",
             "extra": {
@@ -363,7 +363,7 @@
                 "issues": "https://github.com/figuren-theater/ft-theming/issues",
                 "source": "https://github.com/figuren-theater/ft-theming"
             },
-            "time": "2023-07-18T13:54:14+00:00"
+            "time": "2023-09-07T19:56:49+00:00"
         },
         {
             "name": "johnpbloch/wordpress",
