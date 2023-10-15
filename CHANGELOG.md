@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-performance/compare/1.3.1...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-performance/compare/1.3.2...HEAD)
+
+## [1.3.2](https://github.com/figuren-theater/ft-performance/compare/1.3.1...1.3.2) - 2023-10-15
+
+### Dependency Updates & Maintenance
+
+- Set fixed versions for all 3rd-party-deps & UPDATE internal deps ([#35](https://github.com/figuren-theater/ft-performance/pull/35))
 
 ## [1.3.1](https://github.com/figuren-theater/ft-performance/compare/1.3.0...1.3.1) - 2023-09-14
 
