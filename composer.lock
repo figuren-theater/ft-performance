@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "08f8147a7cad1d371e83aaa0d4879394",
+    "content-hash": "b23a914ae7a3cfad34bd1b1060d0ac78",
     "packages": [
         {
             "name": "carstingaxion/cache-control",
@@ -651,15 +651,15 @@
         },
         {
             "name": "wpackagist-plugin/sqlite-object-cache",
-            "version": "1.3.4",
+            "version": "1.3.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/sqlite-object-cache/",
-                "reference": "tags/1.3.4"
+                "reference": "tags/1.3.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/sqlite-object-cache.1.3.4.zip"
+                "url": "https://downloads.wordpress.org/plugin/sqlite-object-cache.1.3.6.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -2209,5 +2209,5 @@
         "php": ">=7.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
