@@ -12,6 +12,11 @@ use Figuren_Theater\Options;
 use Figuren_Theater\Performance;
 use Figuren_Theater\Theming\Themed_Login;
 use FT_VENDOR_DIR;
+use WPMU_PLUGIN_URL;
+use WP_DEBUG;
+use WP_Post;
+use WP_Term;
+use WP_Web_App_Manifest;
 use function add_action;
 use function add_filter;
 use function add_query_arg;
@@ -25,11 +30,6 @@ use function get_the_excerpt;
 use function get_the_title;
 use function home_url;
 use function rawurlencode;
-use WPMU_PLUGIN_URL;
-use WP_DEBUG;
-use WP_Post;
-use WP_Term;
-use WP_Web_App_Manifest;
 
 const BASENAME   = 'pwa/pwa.php';
 const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
@@ -39,7 +39,7 @@ const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 
@@ -51,7 +51,7 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load_plugin() :void {
+function load_plugin(): void {
 
 	$config = Figuren_Theater\get_config()['modules']['performance'];
 	if ( ! $config['pwa'] ) {
@@ -59,7 +59,7 @@ function load_plugin() :void {
 	}
 
 	// Enable verbose Workbox.js logging in the browser console.
-	define( 'WP_SERVICE_WORKER_DEBUG_LOG', WP_DEBUG );
+	define( 'WP_SERVICE_WORKER_DEBUG_LOG', WP_DEBUG ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 
 	require_once FT_VENDOR_DIR . PLUGINPATH; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingCustomConstant
 
@@ -90,7 +90,7 @@ function load_plugin() :void {
  *
  * @return void
  */
-function filter_options() :void {
+function filter_options(): void {
 
 	$_options = [
 		'offline_browsing' => 1,
@@ -112,8 +112,8 @@ function filter_options() :void {
  *
  * The used filter: Filters domains and URLs for resource hints of relation type.
  *
- * @param array<int, string|array<string, string>>  $urls {
- *     Array of resources and their attributes, or URLs to print for resource hints.
+ * @param array<int, string|array<string, string>> $urls {
+ *    Array of resources and their attributes, or URLs to print for resource hints.
  *
  *     @type array|string ...$0 {
  *         Array of resource attributes, or a URL string.
@@ -126,12 +126,12 @@ function filter_options() :void {
  *         @type string $type        Type of the resource (`text/html`, `text/css`, etc).
  *     }
  * }
- * @param string $relation_type The relation type the URLs are printed for,
- *                              e.g. 'preconnect' or 'prerender'.
+ * @param string                                   $relation_type The relation type the URLs are printed for,
+ *                                                                e.g. 'preconnect' or 'prerender'.
  *
  * @return array<int, string|array<string, string>>
  */
-function prefetch_manifest( array $urls, string $relation_type ) : array {
+function prefetch_manifest( array $urls, string $relation_type ): array {
 
 	if ( ! class_exists( 'WP_Web_App_Manifest' ) ) {
 		return $urls;
@@ -154,7 +154,7 @@ function prefetch_manifest( array $urls, string $relation_type ) : array {
  *
  * @return array<string, mixed> $manifest Data of the manifest, to send in the REST API response.
  */
-function modify_manifest( array $manifest ) : array {
+function modify_manifest( array $manifest ): array {
 
 	$manifest = set_shortcuts( $manifest );
 	$manifest = set_colors( $manifest );
@@ -173,7 +173,7 @@ function modify_manifest( array $manifest ) : array {
  *
  * @return array<string, mixed> $manifest Data of the manifest, to send in the REST API response.
  */
-function set_shortcuts( array $manifest ) : array {
+function set_shortcuts( array $manifest ): array {
 
 	$page_for_posts_id = get_option( 'page_for_posts' );
 	if ( \is_int( $page_for_posts_id ) && ! empty( $page_for_posts_id ) ) {
@@ -203,8 +203,8 @@ function set_shortcuts( array $manifest ) : array {
 		$excerpt = ( ! empty( $excerpt ) ) ? $excerpt : __( 'News', 'figurentheater' );
 
 		$manifest['shortcuts'][] = [
-			'name' => $name,
-			'url'  => $url,
+			'name'        => $name,
+			'url'         => $url,
 			'description' => $excerpt,
 
 			/**
@@ -212,7 +212,7 @@ function set_shortcuts( array $manifest ) : array {
 			 *
 			 * @see https://icon-sets.iconify.design/dashicons/admin-post/
 			 */
-			'icons' => [
+			'icons'       => [
 				[
 					'src'     => WPMU_PLUGIN_URL . Performance\ASSETS_URL . 'svg/admin-post.svg',
 					'type'    => 'image/svg+xml',
@@ -236,7 +236,7 @@ function set_shortcuts( array $manifest ) : array {
  *
  * @return array<string, mixed> $manifest Data of the manifest, to send in the REST API response.
  */
-function set_colors( array $manifest ) : array {
+function set_colors( array $manifest ): array {
 	$relevant_colors = Themed_Login\ft_get_relevant_colors();
 
 	$manifest['background_color'] = $relevant_colors['ft_accent'];
@@ -254,7 +254,7 @@ function set_colors( array $manifest ) : array {
  *
  * @return array<string, mixed> $manifest Data of the manifest, to send in the REST API response.
  */
-function set_defaults( array $manifest ) : array {
+function set_defaults( array $manifest ): array {
 
 	$manifest['orientation'] = 'any';
 	$manifest['display']     = 'standalone';
@@ -274,14 +274,14 @@ function set_defaults( array $manifest ) : array {
  *
  * @return array<string, mixed> $manifest Data of the manifest, to send in the REST API response.
  */
-function set_screenshots( array $manifest ) : array {
+function set_screenshots( array $manifest ): array {
 
 	if ( ! isset( $manifest['screenshots'] ) ) {
 		$manifest['screenshots'] = [];
 	}
 
 	$manifest['screenshots'][] = [
-		'src'   => get_shot( home_url(), 900, 2000, 'home' ),
+		'src'   => get_shot( home_url(), 900, 2000 ),
 		'sizes' => '900x2000',
 		'type'  => 'image/jpeg',
 	];
@@ -304,11 +304,10 @@ function set_screenshots( array $manifest ) : array {
  * @param  string $url      Url to screenshot.
  * @param  int    $width    Width of screenshot.
  * @param  int    $height   Height of screenshot.
- * @param  string $new_name Filename to save.
  *
  * @return string
  */
-function get_shot( string $url = '', int $width = 600, int $height = 450, string $new_name = '' ) : string {
+function get_shot( string $url = '', int $width = 600, int $height = 450 ): string {
 
 	// Image found.
 	if ( '' !== $url ) {
@@ -371,7 +370,7 @@ function get_shot( string $url = '', int $width = 600, int $height = 450, string
  *
  * @return array<string, string|null|array<mixed>>
  */
-function theme_asset_caching( array $config ) : array {
+function theme_asset_caching( array $config ): array {
 	// 'NetworkFirst' is the default.
 	$config['strategy'] = \WP_Service_Worker_Caching_Routes::STRATEGY_STALE_WHILE_REVALIDATE;
 

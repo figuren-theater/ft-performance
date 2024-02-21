@@ -8,9 +8,10 @@
 namespace Figuren_Theater\Performance\WP_Super_Preload;
 
 use Figuren_Theater;
-
 use Figuren_Theater\Options;
 use FT_VENDOR_DIR;
+use MINUTE_IN_SECONDS;
+use WP_Super_Preload;
 use function add_action;
 use function add_filter;
 use function current_user_can;
@@ -26,8 +27,6 @@ use function wp_clear_scheduled_hook;
 use function wp_installing;
 use function wp_next_scheduled;
 use function wp_schedule_event;
-use MINUTE_IN_SECONDS;
-use WP_Super_Preload;
 
 const BASENAME   = 'wp-super-preload/wp-super-preload.php';
 const PLUGINPATH = '/carstingaxion/' . BASENAME;
@@ -37,7 +36,7 @@ const PLUGINPATH = '/carstingaxion/' . BASENAME;
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 
@@ -49,7 +48,7 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load_plugin() :void {
+function load_plugin(): void {
 
 	if ( is_network_admin() || is_user_admin() ) {
 		return;
@@ -65,7 +64,7 @@ function load_plugin() :void {
 	add_filter( 'default_option_super_preload_updates', __NAMESPACE__ . '\\default_option_super_preload_updates' );
 
 	// After all post_types are (normally) registered.
-	add_action( 'cache_enabler_site_cache_cleared', __NAMESPACE__ . '\\on_site_cache_deletion', 10, 3 );
+	add_action( 'cache_enabler_site_cache_cleared', __NAMESPACE__ . '\\on_site_cache_deletion', 10, 2 );
 
 	add_action( 'ft_preload_site_cache', __NAMESPACE__ . '\\preload_on_site_cache_deletion', 10, 2 );
 
@@ -80,7 +79,7 @@ function load_plugin() :void {
  *
  * @return void
  */
-function filter_options() :void {
+function filter_options(): void {
 	/*
 	 * Gets added to the 'OptionsCollection'
 	 * from within itself on creation.
@@ -98,7 +97,7 @@ function filter_options() :void {
  *
  * @return array<string, bool|string|array<mixed>>
  */
-function pre_option_super_preload_settings() : array {
+function pre_option_super_preload_settings(): array {
 	return specific_super_preload_settings( static_super_preload_settings() );
 }
 
@@ -109,11 +108,11 @@ function pre_option_super_preload_settings() : array {
  *
  * @return array<string, bool|string|array<mixed>>
  */
-function static_super_preload_settings() : array {
+function static_super_preload_settings(): array {
 	return [
 		// Basic settings.
-		'sitemap_urls'         => '',    // textarea // will be prepared during 'enable'.
-		'additional_contents'  => [      // checkbox.
+		'sitemap_urls'        => '',    // textarea // will be prepared during 'enable'.
+		'additional_contents' => [      // checkbox.
 			'front_pages'      => false, // DO NOT USE, this is better handled by the included sitemaps.
 			'fixed_pages'      => false, // DO NOT USE, this is better handled by the included sitemaps.
 			'categories'       => false, // DO NOT USE, this is better handled by the included sitemaps.
@@ -122,25 +121,25 @@ function static_super_preload_settings() : array {
 			'monthly_archives' => true,
 			'yearly_archives'  => true,
 		],
-		'additional_pages'     => '',            // textarea.
-		'max_pages'            => '1200',        // text.
-		'user_agent'           => '',            // text.
+		'additional_pages'    => '',            // textarea.
+		'max_pages'           => '1200',        // text.
+		'user_agent'          => '',            // text.
 
-		'synchronize_gc'       => 'disable',     // select.
+		'synchronize_gc'      => 'disable',     // select.
 
-		'preload_freq'         => 'hourly',     // select // can be one of: "disable|hourly|twicedaily|daily".
+		'preload_freq'        => 'hourly',     // select // can be one of: "disable|hourly|twicedaily|daily".
 
-		'preload_hh'           => '00',          // text.
-		'preload_mm'           => '13',          // text // Die wilde 13.
+		'preload_hh'          => '00',          // text.
+		'preload_mm'          => '13',          // text // Die wilde 13.
 
 		// Advanced settings.
-		'split_preload'        => true,          // checkbox.
-		'requests_per_split'   => '100',         // text.
-		'parallel_requests'    => '10',          // text in numbers.
-		'interval_in_msec'     => '500',         // text in milliseconds.
-		'timeout_per_fetch'    => '10',          // text in seconds.
-		'preload_time_limit'   => '600',         // text in seconds.
-		'initial_delay'        => '10',          // text in seconds.
+		'split_preload'       => true,          // checkbox.
+		'requests_per_split'  => '100',         // text.
+		'parallel_requests'   => '10',          // text in numbers.
+		'interval_in_msec'    => '500',         // text in milliseconds.
+		'timeout_per_fetch'   => '10',          // text in seconds.
+		'preload_time_limit'  => '600',         // text in seconds.
+		'initial_delay'       => '10',          // text in seconds.
 	];
 }
 
@@ -153,13 +152,15 @@ function static_super_preload_settings() : array {
  *
  * @return array<string, bool|string|array<mixed>>
  */
-function specific_super_preload_settings( array $super_preload_settings ) : array {
+function specific_super_preload_settings( array $super_preload_settings ): array {
 
 	$_public_post_types = array_merge(
-		get_post_types( [
-			'public'   => true,
-			'_builtin' => false,
-		] ),
+		get_post_types(
+			[
+				'public'   => true,
+				'_builtin' => false,
+			] 
+		),
 		[
 			'page',
 			'post',
@@ -171,10 +172,12 @@ function specific_super_preload_settings( array $super_preload_settings ) : arra
 	$_public_post_types = array_diff( $_public_post_types, [ 'dt_subscription' ] );
 
 	$_public_taxonomies = array_merge(
-		get_taxonomies( [
-			'public'   => true,
-			'_builtin' => false,
-		] ),
+		get_taxonomies(
+			[
+				'public'   => true,
+				'_builtin' => false,
+			] 
+		),
 		[
 			'post_tag',
 			'category',
@@ -205,7 +208,7 @@ function specific_super_preload_settings( array $super_preload_settings ) : arra
  *
  * @return array<string, int|string>
  */
-function default_option_super_preload_updates() : array {
+function default_option_super_preload_updates(): array {
 	return [
 		'timestamp'    => 0,
 		'proc_time'    => 0,
@@ -222,9 +225,9 @@ function default_option_super_preload_updates() : array {
  *
  * @return string[]
  */
-function get_sitemap_urls( array $data_names ) : array {
+function get_sitemap_urls( array $data_names ): array {
 	return array_map(
-		function( string $data_name ) : string {
+		function ( string $data_name ): string {
 			return site_url( '/' . $data_name . '-sitemap.xml', 'https' );
 		},
 		$data_names
@@ -237,13 +240,12 @@ function get_sitemap_urls( array $data_names ) : array {
  * @since  1.6.0
  * @since  1.8.0  The `$cache_cleared_index` parameter was added.
  *
- * @param  string                $cleared_url          Full URL of the (page|site) cleared.
- * @param  int                   $cleared_site_id      ID of the (page|site) cleared.
- * @param  array<string, mixed>  $cache_cleared_index  Index of the cache cleared.
+ * @param  string $cleared_url          Full URL of the (page|site) cleared.
+ * @param  int    $cleared_site_id      ID of the (page|site) cleared.
  *
  * @return void
  */
-function on_site_cache_deletion( string $cleared_url, int $cleared_site_id, array $cache_cleared_index ) : void {
+function on_site_cache_deletion( string $cleared_url, int $cleared_site_id ): void {
 
 	switch_to_blog( $cleared_site_id ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.switch_to_blog_switch_to_blog
 
@@ -263,7 +265,7 @@ function on_site_cache_deletion( string $cleared_url, int $cleared_site_id, arra
  *
  * @return void
  */
-function shedule_preload_on_cache_deletion( string $url, int $id, string $preload_type ) : void {
+function shedule_preload_on_cache_deletion( string $url, int $id, string $preload_type ): void {
 
 	if ( wp_installing() ) {
 		return;
@@ -271,7 +273,7 @@ function shedule_preload_on_cache_deletion( string $url, int $id, string $preloa
 
 	$preload_handle = "ft_preload_{$preload_type}_cache";
 
-	$hook_args = [
+	$hook_args          = [
 		$url,
 		$id,
 	];
@@ -315,12 +317,12 @@ function shedule_preload_on_cache_deletion( string $url, int $id, string $preloa
  * it gets now parameters added.
  * Thats why we give such useless defaults.
  *
- * @param  string       $cleared_url [description]
- * @param  int          $cleared_id  [description]
+ * @param  string $cleared_url URL that is triggering the deletion.
+ * @param  int    $cleared_id  Blog-ID of the site to preload content from.
  *
  * @return void
  */
-function preload_on_site_cache_deletion( string $cleared_url = '', int $cleared_id = 0 ) : void {
+function preload_on_site_cache_deletion( string $cleared_url = '', int $cleared_id = 0 ): void {
 
 	// May not been set.
 	if ( 0 < $cleared_id ) {
@@ -351,7 +353,7 @@ function preload_on_site_cache_deletion( string $cleared_url = '', int $cleared_
  *
  * @return array<int, mixed>
  */
-function curl_setopt( array $curl_opts ) : array {
+function curl_setopt( array $curl_opts ): array {
 	$curl_opts[ CURLOPT_ENCODING ]   = 'gzip';
 	$curl_opts[ CURLOPT_HTTPHEADER ] = [ 'Accept: image/webp' ];
 
@@ -364,11 +366,10 @@ function curl_setopt( array $curl_opts ) : array {
  *
  * @return void
  */
-function remove_menu() : void {
+function remove_menu(): void {
 	if ( current_user_can( 'manage_sites' ) ) {
 		return;
 	}
 
 	remove_submenu_page( 'options-general.php', 'wp-super-preload' );
 }
-

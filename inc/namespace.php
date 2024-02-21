@@ -16,7 +16,7 @@ const ASSETS_URL = '/FT/ft-performance/assets/';
  *
  * @return void
  */
-function register() :void {
+function register(): void {
 
 	$use_cache = defined( 'WP_CACHE' ) ? constant( 'WP_CACHE' ) : false;
 
@@ -31,7 +31,7 @@ function register() :void {
 		'sqlite-object-cache' => $use_cache, // This file will be installed from this plugin, no chance to check against $use_mem_cache from here.
 		'wp-super-preload'    => $use_cache,
 	];
-	$options = [
+	$options          = [
 		'defaults' => $default_settings,
 	];
 	Altis\register_module(
@@ -48,7 +48,7 @@ function register() :void {
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	// Plugins.
 	Cache_Control\bootstrap();
