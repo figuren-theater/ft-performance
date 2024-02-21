@@ -25,7 +25,7 @@ const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 
@@ -37,7 +37,7 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load_plugin() :void {
+function load_plugin(): void {
 
 	$config = Figuren_Theater\get_config()['modules']['performance'];
 	if ( ! $config['cache-enabler'] ) {
@@ -60,7 +60,7 @@ function load_plugin() :void {
  *
  * @return void
  */
-function filter_options() :void {
+function filter_options(): void {
 
 	$_options = [
 		// @see https://www.keycdn.com/support/wordpress-cache-enabler-plugin#option !!!
@@ -107,14 +107,14 @@ function filter_options() :void {
 	// But this filter does.
 	add_filter(
 		'cache_enabler_settings_before_validation',
-		function() use ( $_options ) {
+		function () use ( $_options ) {
 			return $_options;
 		}
 	);
 
 	add_filter(
 		'cache_enabler_page_contents_before_store',
-		function( $html_to_save ) {
+		function ( $html_to_save ) {
 			// Get secret login slug.
 			$login_slug = (string) getenv( 'FT_SECURITY_LOGIN_SLUG' );
 

@@ -19,7 +19,7 @@ const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'mu_plugin_loaded', __NAMESPACE__ . '\\load_plugin', 0 );
 }
@@ -29,7 +29,7 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load_plugin() :void {
+function load_plugin(): void {
 
 	/**
 	 * How to configure the error message (which are invisible to users)?
@@ -45,4 +45,3 @@ function load_plugin() :void {
 
 	require_once FT_VENDOR_DIR . PLUGINPATH; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingCustomConstant
 }
-

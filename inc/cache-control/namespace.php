@@ -15,7 +15,7 @@ use function add_action;
 
 use function remove_action;
 
-const BASENAME = 'cache-control/cache-control.php';
+const BASENAME   = 'cache-control/cache-control.php';
 const PLUGINPATH = '/carstingaxion/' . BASENAME;
 
 const OPTION_PREFIX = 'cache_control_';
@@ -25,7 +25,7 @@ const OPTION_PREFIX = 'cache_control_';
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 
@@ -37,7 +37,7 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load_plugin() :void {
+function load_plugin(): void {
 
 	$config = Figuren_Theater\get_config()['modules']['performance'];
 	if ( ! $config['cache-control'] ) {
@@ -47,7 +47,6 @@ function load_plugin() :void {
 	require_once FT_VENDOR_DIR . PLUGINPATH; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingCustomConstant
 
 	remove_action( 'init', 'cache_control_add_admin_page' );
-
 }
 
 /**
@@ -55,11 +54,11 @@ function load_plugin() :void {
  *
  * @return void
  */
-function filter_options() :void {
+function filter_options(): void {
 
 	// This is only for better devx.
 	$_options = [
-		'front_page'     => [
+		'front_page'         => [
 			'id'         => 'front_page',
 			'name'       => 'Front page',
 			'max_age'    => 303,           // 5 min (+ 3 sec to help during debug, to see if options are set correct)
@@ -67,7 +66,7 @@ function filter_options() :void {
 			'staleerror' => 0,
 			'stalereval' => 0,
 		],
-		'singles'        => [
+		'singles'            => [
 			'id'         => 'singles',
 			'name'       => 'Posts',
 			'max_age'    => 600,           // 10 min
@@ -76,7 +75,7 @@ function filter_options() :void {
 			'staleerror' => 0,
 			'stalereval' => 0,
 		],
-		'pages'          => [
+		'pages'              => [
 			'id'         => 'pages',
 			'name'       => 'Pages',
 			'max_age'    => 1200,          // 20 min
@@ -84,7 +83,7 @@ function filter_options() :void {
 			'staleerror' => 0,
 			'stalereval' => 0,
 		],
-		'home'           => [
+		'home'               => [
 			'id'         => 'home',
 			'name'       => 'Main index',
 			'max_age'    => 180,           // 3 min
@@ -93,7 +92,7 @@ function filter_options() :void {
 			'staleerror' => 0,
 			'stalereval' => 0,
 		],
-		'categories'     => [
+		'categories'         => [
 			'id'         => 'categories',
 			'name'       => 'Categories',
 			'max_age'    => 900,           // 15 min
@@ -102,7 +101,7 @@ function filter_options() :void {
 			'staleerror' => 0,
 			'stalereval' => 0,
 		],
-		'tags'           => [
+		'tags'               => [
 			'id'         => 'tags',
 			'name'       => 'Tags',
 			'max_age'    => 900,           // 15 min
@@ -111,7 +110,7 @@ function filter_options() :void {
 			'staleerror' => 0,
 			'stalereval' => 0,
 		],
-		'authors'        => [
+		'authors'            => [
 			'id'         => 'authors',
 			'name'       => 'Authors',
 			'max_age'    => 1800,          // 30 min
@@ -120,7 +119,7 @@ function filter_options() :void {
 			'staleerror' => 0,
 			'stalereval' => 0,
 		],
-		'dates'          => [
+		'dates'              => [
 			'id'         => 'dates',
 			'name'       => 'Dated archives',
 			'max_age'    => 10800,         // 3 hours
@@ -128,7 +127,7 @@ function filter_options() :void {
 			'staleerror' => 0,
 			'stalereval' => 0,
 		],
-		'feeds'          => [
+		'feeds'              => [
 			'id'         => 'feeds',
 			'name'       => 'Feeds',
 			'max_age'    => 5400,          // 1 hours 30 min
@@ -136,7 +135,7 @@ function filter_options() :void {
 			'staleerror' => 0,
 			'stalereval' => 0,
 		],
-		'attachment'     => [
+		'attachment'         => [
 			'id'         => 'attachment',
 			'name'       => 'Attachment pages',
 			'max_age'    => 10800,         // 3 hours
@@ -144,7 +143,7 @@ function filter_options() :void {
 			'staleerror' => 0,
 			'stalereval' => 0,
 		],
-		'search'         => [
+		'search'             => [
 			'id'         => 'search',
 			'name'       => 'Search results',
 			'max_age'    => 1800,          // 30 min
@@ -152,7 +151,7 @@ function filter_options() :void {
 			'staleerror' => 0,
 			'stalereval' => 0,
 		],
-		'notfound'       => [
+		'notfound'           => [
 			'id'         => 'notfound',
 			'name'       => '404 Not Found',
 			'max_age'    => 900,           // 15 min
@@ -186,7 +185,7 @@ function filter_options() :void {
 			}
 
 			// Prepare option-name 2nd part.
-			$option_name = $_option_name . $option_type;
+			$option_name                            = $_option_name . $option_type;
 				$_separated_options[ $option_name ] = $option_value;
 		}
 	}

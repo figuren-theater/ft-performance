@@ -9,15 +9,15 @@ namespace Figuren_Theater\Performance\Sqlite_Object_Cache;
 
 use Figuren_Theater;
 use Figuren_Theater\Options;
+use WP_PLUGIN_DIR;
 use function add_action;
 use function add_filter;
 use function current_user_can;
 use function get_current_screen;
 use function remove_submenu_page;
 use function wp_dequeue_style;
-use WP_PLUGIN_DIR;
 
-const BASENAME = 'sqlite-object-cache/sqlite-object-cache.php';
+const BASENAME   = 'sqlite-object-cache/sqlite-object-cache.php';
 const PLUGINPATH = BASENAME; // @todo #26 ugly hardcoded WP_CONTENT_DIR inside 'sqlite-object-cache' plugin, needs issue !!
 
 /**
@@ -25,7 +25,7 @@ const PLUGINPATH = BASENAME; // @todo #26 ugly hardcoded WP_CONTENT_DIR inside '
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 
@@ -37,12 +37,12 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load_plugin() :void {
+function load_plugin(): void {
 
 	// Remove 'Activate'-Link from Plugins on the Plugin-List
 	// (1) is Plugin is not allowed or (2) if is PRODUCTION environment.
 	add_filter( 'plugin_action_links', __NAMESPACE__ . '\\remove_plugin_action_links', 10, 2 );
-	add_filter( 'network_admin_plugin_action_links', __NAMESPACE__ . '\\remove_plugin_action_links', 10, 4 );
+	add_filter( 'network_admin_plugin_action_links', __NAMESPACE__ . '\\remove_plugin_action_links', 10, 2 );
 
 	$config = Figuren_Theater\get_config()['modules']['performance'];
 	if ( ! $config['sqlite-object-cache'] ) {
@@ -60,7 +60,7 @@ function load_plugin() :void {
  *
  * @return void
  */
-function filter_options() :void {
+function filter_options(): void {
 
 	$_options = [
 		'retention'          => '24',  // Cached data expires after n hours.
@@ -87,7 +87,7 @@ function filter_options() :void {
  *
  * @return void
  */
-function remove_menu() :void {
+function remove_menu(): void {
 
 	if ( current_user_can( 'manage_sites' ) ) {
 		return;
@@ -103,7 +103,7 @@ function remove_menu() :void {
  *
  * @return void
  */
-function remove_scripts() : void {
+function remove_scripts(): void {
 
 	$current_screen = get_current_screen();
 	if ( \is_null( $current_screen ) ) {
@@ -120,14 +120,12 @@ function remove_scripts() : void {
 /**
  * Replace 'Update' & 'Deactivate' etc. Links from the wp-admin/plugins.php list with a note on the autoloading of this plugin.
  *
- * @param  string[]              $links_array       An array of plugin action links. By default this can include 'activate', 'deactivate', and 'delete'. With Multisite active this can also include 'network_active' and 'network_only' items.
- * @param  string                $plugin_file_name  Path to the plugin file relative to the plugins directory.
- * @param  array<string, mixed>  $plugin_data       Contains all the plugin meta information, like Name, Description, Author, AuthorURI etc.
- * @param  string                $context           The plugin status. It can include by default: ‘all’, ‘active’, ‘recently_activated’, ‘inactive’, ‘upgrade’, ‘dropins’, ‘mustuse’, and ‘search’.
+ * @param  string[] $links_array       An array of plugin action links. By default this can include 'activate', 'deactivate', and 'delete'. With Multisite active this can also include 'network_active' and 'network_only' items.
+ * @param  string   $plugin_file_name  Path to the plugin file relative to the plugins directory.
  *
  * @return string[] $links_array
  */
-function remove_plugin_action_links( array $links_array, string $plugin_file_name, array $plugin_data = null, string $context = null ) : array {
+function remove_plugin_action_links( array $links_array, string $plugin_file_name ): array {
 
 	if ( BASENAME !== $plugin_file_name ) {
 		return $links_array;
