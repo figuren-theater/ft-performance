@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2756c378ad6a220e5665f6d4b074a533",
+    "content-hash": "cd9cc84d7df8eb98c76d6c17c7a296d0",
     "packages": [
         {
             "name": "carstingaxion/cache-control",
@@ -561,15 +561,15 @@
         },
         {
             "name": "wpackagist-plugin/cache-enabler",
-            "version": "1.8.13",
+            "version": "1.8.15",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/cache-enabler/",
-                "reference": "tags/1.8.13"
+                "reference": "tags/1.8.15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/cache-enabler.1.8.13.zip"
+                "url": "https://downloads.wordpress.org/plugin/cache-enabler.1.8.15.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
