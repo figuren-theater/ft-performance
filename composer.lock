@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "62fd82d741bf6d848b53488e096d1ed8",
+    "content-hash": "9dd11e5982f927a9cf9ed2f2dc8d4643",
     "packages": [
         {
             "name": "carstingaxion/cache-control",
@@ -2450,5 +2450,5 @@
         "php": ">=7.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }
