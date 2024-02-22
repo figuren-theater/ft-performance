@@ -56,7 +56,6 @@ Thoose are completely managed by code and lack of their typical UI.
 * [Cache-Control](https://github.com/carstingaxion/wordpress-cache-control)
 * [Cache Enabler](https://wordpress.org/plugins/cache-enabler/#developers)
 * [Fast404](https://wordpress.org/plugins/fast404/#developers)
-* [Native Gettext](https://wordpress.org/plugins/native-gettext/#developers)
 * [PWA](https://wordpress.org/plugins/pwa/#developers)
 * [Quicklink for WordPress](https://wordpress.org/plugins/quicklink/#developers)
 * [SQLite Object Cache](https://wordpress.org/plugins/sqlite-object-cache/#developers)
