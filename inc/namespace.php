@@ -25,7 +25,6 @@ function register(): void {
 
 		'cache-control'       => $use_cache,
 		'cache-enabler'       => $use_cache,
-		'native-gettext'      => true,
 		'pwa'                 => false,
 		'quicklink'           => $use_cache,
 		'sqlite-object-cache' => $use_cache, // This file will be installed from this plugin, no chance to check against $use_mem_cache from here.
@@ -54,7 +53,7 @@ function bootstrap(): void {
 	Cache_Control\bootstrap();
 	Cache_Enabler\bootstrap();
 	Fast404\bootstrap();
-	Native_Gettext\bootstrap();
+	Performant_Translations\bootstrap();
 	PWA\bootstrap();
 	Quicklink\bootstrap();
 	Sqlite_Object_Cache\bootstrap();

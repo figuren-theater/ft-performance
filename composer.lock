@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bd583285b8c8dce78c4d781a487e5b8b",
+    "content-hash": "9dd11e5982f927a9cf9ed2f2dc8d4643",
     "packages": [
         {
             "name": "carstingaxion/cache-control",
@@ -596,22 +596,22 @@
             "homepage": "https://wordpress.org/plugins/fast404/"
         },
         {
-            "name": "wpackagist-plugin/native-gettext",
+            "name": "wpackagist-plugin/performant-translations",
             "version": "1.1.2",
             "source": {
                 "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/native-gettext/",
+                "url": "https://plugins.svn.wordpress.org/performant-translations/",
                 "reference": "tags/1.1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/native-gettext.1.1.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/performant-translations.1.1.2.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
             },
             "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/native-gettext/"
+            "homepage": "https://wordpress.org/plugins/performant-translations/"
         },
         {
             "name": "wpackagist-plugin/pwa",
@@ -2450,5 +2450,5 @@
         "php": ">=7.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }
