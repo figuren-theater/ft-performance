@@ -39,7 +39,7 @@
 		"wpackagist-plugin/cache-enabler": "1.8.13",
 		"wpackagist-plugin/fast404": "1.2",
 		"wpackagist-plugin/performant-translations": "^1.1",
-		"wpackagist-plugin/pwa": "0.7.1",
+		"wpackagist-plugin/pwa": "^0.8.0",
 		"wpackagist-plugin/quicklink": "0.10.0",
 		"wpackagist-plugin/sqlite-object-cache": "1.3.7"
 	},
