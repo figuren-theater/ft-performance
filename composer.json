@@ -40,7 +40,8 @@
 		"wpackagist-plugin/fast404": "1.2",
 		"wpackagist-plugin/pwa": "0.7.1",
 		"wpackagist-plugin/quicklink": "0.10.0",
-		"wpackagist-plugin/sqlite-object-cache": "1.3.7"
+		"wpackagist-plugin/sqlite-object-cache": "1.3.7",
+		"wpackagist-plugin/performant-translations": "^1.1"
 	},
 	"require-dev": {
 		"figuren-theater/code-quality": "*"
@@ -67,6 +68,7 @@
 			"inc/cache-control/namespace.php",
 			"inc/cache-enabler/namespace.php",
 			"inc/fast404/namespace.php",
+			"inc/performant-translations/namespace.php",
 			"inc/pwa/namespace.php",
 			"inc/quicklink/namespace.php",
 			"inc/sqlite-object-cache/namespace.php",
@@ -90,6 +92,7 @@
 				"carstingaxion/wp-super-preload",
 				"wpackagist-plugin/cache-enabler",
 				"wpackagist-plugin/fast404",
+				"wpackagist-plugin/performant-translations",
 				"wpackagist-plugin/pwa",
 				"wpackagist-plugin/quicklink"
 			]

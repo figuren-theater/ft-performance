@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3b69e66ff2b022407641d3f52612a7f7",
+    "content-hash": "ff9307639ab366962668b273280cb20d",
     "packages": [
         {
             "name": "carstingaxion/cache-control",
@@ -594,6 +594,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/fast404/"
+        },
+        {
+            "name": "wpackagist-plugin/performant-translations",
+            "version": "1.1.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/performant-translations/",
+                "reference": "tags/1.1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/performant-translations.1.1.2.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/performant-translations/"
         },
         {
             "name": "wpackagist-plugin/pwa",
