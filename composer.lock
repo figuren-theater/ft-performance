@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff9307639ab366962668b273280cb20d",
+    "content-hash": "62fd82d741bf6d848b53488e096d1ed8",
     "packages": [
         {
             "name": "carstingaxion/cache-control",
