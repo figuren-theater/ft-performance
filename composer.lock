@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ce970bdaa342591d6ce0e4fb828d305",
+    "content-hash": "44397864cd0a52beb8aec4dc2d36f449",
     "packages": [
         {
             "name": "carstingaxion/cache-control",
@@ -633,15 +633,15 @@
         },
         {
             "name": "wpackagist-plugin/quicklink",
-            "version": "0.10.0",
+            "version": "0.10.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/quicklink/",
-                "reference": "tags/0.10.0"
+                "reference": "tags/0.10.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/quicklink.0.10.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/quicklink.0.10.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
