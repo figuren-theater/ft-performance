@@ -234,16 +234,16 @@
         },
         {
             "name": "figuren-theater/ft-options",
-            "version": "1.2.3",
+            "version": "1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/figuren-theater/ft-options.git",
-                "reference": "127e6c8bb62cce778ee7468aa548c8326fe9c29a"
+                "reference": "f834d9d398078817c2653b054b584a11468fe6b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/figuren-theater/ft-options/zipball/127e6c8bb62cce778ee7468aa548c8326fe9c29a",
-                "reference": "127e6c8bb62cce778ee7468aa548c8326fe9c29a",
+                "url": "https://api.github.com/repos/figuren-theater/ft-options/zipball/f834d9d398078817c2653b054b584a11468fe6b8",
+                "reference": "f834d9d398078817c2653b054b584a11468fe6b8",
                 "shasum": ""
             },
             "require": {
@@ -251,7 +251,7 @@
                 "php": ">=7.4"
             },
             "require-dev": {
-                "figuren-theater/code-quality": "*"
+                "figuren-theater/code-quality": "^1.1"
             },
             "type": "wordpress-muplugin",
             "autoload": {
@@ -288,7 +288,7 @@
                 "issues": "https://github.com/figuren-theater/ft-options/issues",
                 "source": "https://github.com/figuren-theater/ft-options"
             },
-            "time": "2023-09-11T10:27:33+00:00"
+            "time": "2024-02-23T03:54:22+00:00"
         },
         {
             "name": "figuren-theater/ft-theming",
