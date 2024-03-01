@@ -19,6 +19,7 @@ parameters:
             - wp-content/
             - tests/
     ignoreErrors:
+        # TODO https://github.com/figuren-theater/ft-performance/issues/48 Remove hard dependencies onto deprecated__Figuren_Theater__v2
         - '#Constant FT_CORESITES not found\.#'
         - '#Call to static method site\(\) on an unknown class Figuren_Theater\\FT\.#'
 
