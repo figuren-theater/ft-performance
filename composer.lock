@@ -89,16 +89,16 @@
         },
         {
             "name": "composer/installers",
-            "version": "v2.2.0",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "c29dc4b93137acb82734f672c37e029dfbd95b35"
+                "reference": "12fb2dfe5e16183de69e784a7b84046c43d97e8e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/c29dc4b93137acb82734f672c37e029dfbd95b35",
-                "reference": "c29dc4b93137acb82734f672c37e029dfbd95b35",
+                "url": "https://api.github.com/repos/composer/installers/zipball/12fb2dfe5e16183de69e784a7b84046c43d97e8e",
+                "reference": "12fb2dfe5e16183de69e784a7b84046c43d97e8e",
                 "shasum": ""
             },
             "require": {
@@ -106,12 +106,12 @@
                 "php": "^7.2 || ^8.0"
             },
             "require-dev": {
-                "composer/composer": "1.6.* || ^2.0",
-                "composer/semver": "^1 || ^3",
-                "phpstan/phpstan": "^0.12.55",
-                "phpstan/phpstan-phpunit": "^0.12.16",
-                "symfony/phpunit-bridge": "^5.3",
-                "symfony/process": "^5"
+                "composer/composer": "^1.10.27 || ^2.7",
+                "composer/semver": "^1.7.2 || ^3.4.0",
+                "phpstan/phpstan": "^1.11",
+                "phpstan/phpstan-phpunit": "^1",
+                "symfony/phpunit-bridge": "^7.1.1",
+                "symfony/process": "^5 || ^6 || ^7"
             },
             "type": "composer-plugin",
             "extra": {
@@ -168,6 +168,7 @@
                 "cockpit",
                 "codeigniter",
                 "concrete5",
+                "concreteCMS",
                 "croogo",
                 "dokuwiki",
                 "drupal",
@@ -214,7 +215,7 @@
             ],
             "support": {
                 "issues": "https://github.com/composer/installers/issues",
-                "source": "https://github.com/composer/installers/tree/v2.2.0"
+                "source": "https://github.com/composer/installers/tree/v2.3.0"
             },
             "funding": [
                 {
@@ -230,7 +231,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-08-20T06:45:11+00:00"
+            "time": "2024-06-24T20:46:46+00:00"
         },
         {
             "name": "figuren-theater/ft-options",
@@ -598,15 +599,15 @@
         },
         {
             "name": "wpackagist-plugin/performant-translations",
-            "version": "1.1.2",
+            "version": "1.2.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/performant-translations/",
-                "reference": "tags/1.1.2"
+                "reference": "tags/1.2.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/performant-translations.1.1.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/performant-translations.1.2.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
