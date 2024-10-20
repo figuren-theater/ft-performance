@@ -2,7 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-performance/compare/1.3.2...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-performance/compare/1.4.0...HEAD)
+
+## [1.4.0](https://github.com/figuren-theater/ft-performance/compare/1.3.2...1.4.0) - 2024-02-23
+
+### New
+
+- 'performant-translations' ([#40](https://github.com/figuren-theater/ft-performance/pull/40))
+
+### 🐛 Fixed
+
+- Update 'fast404' version constraint to be more flexibel ([#43](https://github.com/figuren-theater/ft-performance/pull/43))
+
+### Dependency Updates & Maintenance
+
+- Upgrading figuren-theater/ft-options (1.2.3 => 1.2.4) ([#46](https://github.com/figuren-theater/ft-performance/pull/46))
+- Upgrading figuren-theater/ft-theming (1.1.2 => 1.2.0) ([#45](https://github.com/figuren-theater/ft-performance/pull/45))
+- Upgrading wpackagist-plugin/cache-enabler (1.8.13 => 1.8.15) ([#44](https://github.com/figuren-theater/ft-performance/pull/44))
+- Upgrading wpackagist-plugin/quicklink (0.10.0 => 0.10.1) ([#42](https://github.com/figuren-theater/ft-performance/pull/42))
+- Upgrading wpackagist-plugin/pwa (0.7.1 => 0.8.0) ([#41](https://github.com/figuren-theater/ft-performance/pull/41))
+- Remove 'native-gettext' in favor of 'performant-translations' ([#40](https://github.com/figuren-theater/ft-performance/pull/40))
+- Bump wpackagist-plugin/sqlite-object-cache from 1.3.4 to 1.3.7 ([#39](https://github.com/figuren-theater/ft-performance/pull/39))
+- Upgrading figuren-theater/code-quality (0.8.1 => 1.1.1) ([#38](https://github.com/figuren-theater/ft-performance/pull/38))
 
 ## [1.3.2](https://github.com/figuren-theater/ft-performance/compare/1.3.1...1.3.2) - 2023-10-15
 
