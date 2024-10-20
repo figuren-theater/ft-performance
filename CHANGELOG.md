@@ -2,7 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-performance/compare/1.4.0...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-performance/compare/1.5.0...HEAD)
+
+## [1.5.0](https://github.com/figuren-theater/ft-performance/compare/1.4.0...1.5.0) - 2024-10-20
+
+- Document TODO as issue ([#53](https://github.com/figuren-theater/ft-performance/pull/53))
+
+### Dependency Updates & Maintenance
+
+- Bump figuren-theater/code-quality from 1.1.1 to 1.2.1 ([#52](https://github.com/figuren-theater/ft-performance/pull/52))
+- Bump wpackagist-plugin/sqlite-object-cache from 1.3.7 to 1.3.8 ([#49](https://github.com/figuren-theater/ft-performance/pull/49))
+- Bump wpackagist-plugin/pwa from 0.8.0 to 0.8.1 ([#50](https://github.com/figuren-theater/ft-performance/pull/50))
+- Bump wpackagist-plugin/performant-translations from 1.1.2 to 1.2.0 ([#51](https://github.com/figuren-theater/ft-performance/pull/51))
+- Bump figuren-theater/ft-options from 1.2.4 to 1.2.5 ([#47](https://github.com/figuren-theater/ft-performance/pull/47))
 
 ## [1.4.0](https://github.com/figuren-theater/ft-performance/compare/1.3.2...1.4.0) - 2024-02-23
 
