@@ -293,16 +293,16 @@
         },
         {
             "name": "figuren-theater/ft-theming",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/figuren-theater/ft-theming.git",
-                "reference": "25e7bc9ba71318f6cf618359746d0a6e30b0a2b8"
+                "reference": "387cc9f10d31ed547fac5f534f33551cebb6d80b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/figuren-theater/ft-theming/zipball/25e7bc9ba71318f6cf618359746d0a6e30b0a2b8",
-                "reference": "25e7bc9ba71318f6cf618359746d0a6e30b0a2b8",
+                "url": "https://api.github.com/repos/figuren-theater/ft-theming/zipball/387cc9f10d31ed547fac5f534f33551cebb6d80b",
+                "reference": "387cc9f10d31ed547fac5f534f33551cebb6d80b",
                 "shasum": ""
             },
             "require": {
@@ -365,7 +365,7 @@
                 "issues": "https://github.com/figuren-theater/ft-theming/issues",
                 "source": "https://github.com/figuren-theater/ft-theming"
             },
-            "time": "2024-02-16T20:00:21+00:00"
+            "time": "2024-10-25T16:43:39+00:00"
         },
         {
             "name": "johnpbloch/wordpress",
