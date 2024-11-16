@@ -2,7 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-performance/compare/1.5.0...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-performance/compare/1.5.1...HEAD)
+
+## [1.5.1](https://github.com/figuren-theater/ft-performance/compare/1.5.0...1.5.1) - 2024-11-16
+
+### :bug: Bugfix
+
+- Get *Cache-Enabler* "version" option directly from the DB to avoid hickups ([#55](https://github.com/figuren-theater/ft-performance/pull/55))
+
+### Dependency Updates & Maintenance
+
+- Bump figuren-theater/ft-theming from 1.2.0 to 1.2.1 ([#54](https://github.com/figuren-theater/ft-performance/pull/54))
 
 ## [1.5.0](https://github.com/figuren-theater/ft-performance/compare/1.4.0...1.5.0) - 2024-10-20
 
