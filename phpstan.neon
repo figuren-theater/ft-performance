@@ -17,7 +17,7 @@ parameters:
             # when package is tested
             # and not running within ft-platform
             - wp-content/
-            - tests/
+            # - tests/
     ignoreErrors:
         # TODO https://github.com/figuren-theater/ft-performance/issues/48 Remove hard dependencies onto deprecated__Figuren_Theater__v2
         - '#Constant FT_CORESITES not found\.#'
