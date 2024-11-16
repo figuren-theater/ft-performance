@@ -17,7 +17,7 @@ parameters:
             # when package is tested
             # and not running within ft-platform
             - wp-content/
-            - tests/
+            # - tests/
     ignoreErrors:
         # TODO https://github.com/figuren-theater/ft-performance/issues/48 Remove hard dependencies onto deprecated__Figuren_Theater__v2
         - '#Constant FT_CORESITES not found\.#'
@@ -26,3 +26,8 @@ parameters:
         # Find a nicer way instead of ignoring this Error on every ft-module
         - '#Function Altis\\register_module not found\.#'
         - '#Function Figuren_Theater\\get_config not found\.#'
+
+        # inc/sqlite-object-cache/namespace.php
+        #
+        # A dev-only errors, which can occur if not setup in a working environment (like actually in GitHub CI).
+        - '#^Path in require_once\(\) "\.//sqlite-object-cache/sqlite-object-cache\.php" is not a file or it does not exist\.$#'
