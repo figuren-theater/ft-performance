@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-performance/compare/1.5.1...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-performance/compare/1.5.2...HEAD)
+
+## [1.5.2](https://github.com/figuren-theater/ft-performance/compare/1.5.1...1.5.2) - 2025-12-11
+
+### Dependency Updates & Maintenance
+
+- Bump wpackagist-plugin/pwa from 0.8.1 to 0.8.2 ([#56](https://github.com/figuren-theater/ft-performance/pull/56))
 
 ## [1.5.1](https://github.com/figuren-theater/ft-performance/compare/1.5.0...1.5.1) - 2024-11-16
 
