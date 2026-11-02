@@ -563,15 +563,15 @@
         },
         {
             "name": "wpackagist-plugin/cache-enabler",
-            "version": "1.8.15",
+            "version": "1.8.17",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/cache-enabler/",
-                "reference": "tags/1.8.15"
+                "reference": "tags/1.8.17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/cache-enabler.1.8.15.zip"
+                "url": "https://downloads.wordpress.org/plugin/cache-enabler.1.8.17.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -2562,12 +2562,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=7.2"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }
