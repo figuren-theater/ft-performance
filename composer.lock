@@ -653,15 +653,15 @@
         },
         {
             "name": "wpackagist-plugin/sqlite-object-cache",
-            "version": "1.6.1",
+            "version": "1.6.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/sqlite-object-cache/",
-                "reference": "tags/1.6.1"
+                "reference": "tags/1.6.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/sqlite-object-cache.1.6.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/sqlite-object-cache.1.6.6.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -2562,12 +2562,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=7.2"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }
